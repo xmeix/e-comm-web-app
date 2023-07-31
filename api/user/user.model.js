@@ -6,25 +6,29 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
       min: 2,
-      max: 50,
-    },
-    surname: {
-      type: String,
-      required: true,
-      min: 2,
-      max: 50,
+      max: 100,
     },
     phoneNumber: {
       type: String,
       required: true,
-      max: 10,
       validate: /^(0)(5|6|7)[0-9]{8}$/,
     },
     email: {
       type: String,
       required: true,
       unique: true,
-      max: 80,
+    },
+    address: {
+      street: {
+        type: String,
+      },
+      city: {
+        type: String,
+      },
+      zipCode: {
+        type: String,
+        validate: /^\d{5}$/,
+      },
     },
     password: {
       type: String,
@@ -32,7 +36,7 @@ const UserSchema = new mongoose.Schema(
     },
     isAdmin: {
       type: Boolean,
-      required: true,
+      required: false,
     },
   },
   {
@@ -42,4 +46,3 @@ const UserSchema = new mongoose.Schema(
 
 const User = mongoose.model("User", UserSchema);
 export default User;
- 
