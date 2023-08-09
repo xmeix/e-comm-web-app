@@ -7,6 +7,7 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 
 import authRoutes from "./auth/auth.route.js";
+import userRoutes from "./user/user.route.js";
 
 const toId = mongoose.Types.ObjectId;
 // Configure environment variables
@@ -39,8 +40,11 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // ____________________________________________________ ________________________
+app.use("/public", express.static("public"));
+// ____________________________________________________ ________________________
 // Set up API routes
 app.use("/auth", authRoutes);
+app.use("/user", userRoutes);
 
 mongoose
   .connect(process.env.MONGO_URL, {

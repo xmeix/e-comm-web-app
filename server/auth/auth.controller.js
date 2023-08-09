@@ -135,7 +135,9 @@ export const register = async (req, res, next) => {
     next(errorHandler(res, error));
   }
 };
-
+// @desc    Register a new user
+// @route   POST /api/auth/register
+// @access  Public
 export const refresh = async (req, res, next) => {
   const cookies = req.cookies;
   try {
