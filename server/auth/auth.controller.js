@@ -6,6 +6,7 @@ import {
   LoginValidation,
 } from "./../validation/user.validation.js";
 import CustomError from "../utils/CustomError.js";
+import jwt from "jsonwebtoken";
 
 // @desc    Auth user, save refresh token in cookie , generate and send access token
 // @route   POST /api/auth/login
@@ -42,7 +43,7 @@ export const login = async (req, res, next) => {
       process.env.ACCESS_TOKEN_SECRET
     );
 
-    // res.set("Authorization", `Bearer ${accessToken}`);
+    res.set("Authorization", `Bearer ${accessToken}`);
 
     const refreshToken = generateJWT(
       user,
@@ -54,7 +55,7 @@ export const login = async (req, res, next) => {
       httpOnly: true,
       secure: true,
       sameSite: "None",
-      maxAge: 364 * 24 * 60 * 60 * 1000,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     delete user.password;
@@ -130,6 +131,38 @@ export const register = async (req, res, next) => {
       user: userWithoutPassword._doc,
       message: "Signed Up successfully",
     });
+  } catch (error) {
+    next(errorHandler(res, error));
+  }
+};
+
+export const refresh = async (req, res, next) => {
+  const cookies = req.cookies;
+  try {
+    if (!cookies?.refresh_token) {
+      throw new CustomError(401, "Unauthorized");
+    }
+
+    const refreshToken = cookies.refresh_token;
+
+    jwt.verify(
+      refreshToken,
+      process.env.REFRESH_TOKEN_SECRET,
+      async (err, decoded) => {
+        if (err) return res.status(403).json({ error: "Forbidden" });
+
+        const foundUser = await User.findOne({ email: decoded.UserInfo.email });
+        if (!foundUser) return res.status(401).json({ error: "Unauthorized" });
+
+        const accessToken = generateJWT(
+          foundUser,
+          "10s",
+          process.env.ACCESS_TOKEN_SECRET
+        );
+        res.set("Authorization", `Bearer ${accessToken}`);
+        res.status(200).json({ accessToken });
+      }
+    );
   } catch (error) {
     next(errorHandler(res, error));
   }

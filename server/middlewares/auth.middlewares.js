@@ -6,6 +6,7 @@ export const generateJWT = (user, exp, secret) => {
     UserInfo: {
       id: user._id,
       email: user.email,
+      isAdmin: user.isAdmin,
     },
   };
 
@@ -22,6 +23,28 @@ export const errorHandler = (res, error) => {
   } else res.status(500).json({ error: error.message });
 };
 
-export const verifyAuthentication = async (req, res, next) => {
-  // let refreshToken = req.cookies.refresh_token;
+const verifyToken = (req, res, next) => {
+  const authHeader = req.headers.authorization || req.headers.Authorization;
+
+  if (!authHeader?.startsWith("Bearer ")) {
+    return res.status(401).json({ error: "Unauthorized!" });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+    if (err) return res.status(403).json({ error: "Forbidden" });
+    req.user = decoded.UserInfo;
+    next();
+  });
 };
+
+const verifyTokenAndAdmin = (req, res, next) => {
+  verifyToken(req, res, () => {
+    if (req.user.isAdmin) {
+      next();
+    } else {
+      res.status(403).json("Unauthorized!");
+    }
+  });
+}; 
