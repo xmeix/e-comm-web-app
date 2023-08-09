@@ -5,6 +5,7 @@ import {
   RegisterationValidation,
   LoginValidation,
 } from "./../validation/user.validation.js";
+import CustomError from "../utils/CustomError.js";
 
 // @desc    Auth user, save refresh token in cookie , generate and send access token
 // @route   POST /api/auth/login
@@ -21,18 +22,18 @@ export const login = async (req, res, next) => {
     const { error, value } = LoginValidation.validate(dataToValidate);
 
     if (error) {
-      console.error("401::" + error.details[0].message);
-      throw new Error("401::" + error.details[0].message); // Fixed the error variable
+      // console.error("401::" + error.details[0].message);
+      throw new CustomError(400, error.details[0].message); // Fixed the error variable
     }
 
     const user = await User.findOne({ email: email });
 
     if (!user) {
-      throw new Error("401::Invalid credentials");
+      throw new CustomError(401, "Invalid credentials");
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) throw new Error("401::Invalid credentials");
+    if (!isMatch) throw new CustomError(401, "Invalid credentials");
 
     // generate accessToken
     const accessToken = generateJWT(
@@ -100,12 +101,12 @@ export const register = async (req, res, next) => {
     const { error, value } = RegisterationValidation.validate(dataToValidate);
 
     if (error) {
-      throw new Error("401::" + error.details[0].message); // Fixed the error variable
+      throw new CustomError(400, error.details[0].message); // Fixed the error variable
     }
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      throw new Error("409::User already exists"); // Removed the object notation for error message
+      throw new CustomError(409, "User already exists"); // Removed the object notation for error message
     }
 
     const salt = await bcrypt.genSalt();

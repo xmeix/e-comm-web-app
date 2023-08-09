@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import CustomError from "../utils/CustomError.js";
 
 export const generateJWT = (user, exp, secret) => {
   const payload = {
@@ -16,12 +17,11 @@ export const generateJWT = (user, exp, secret) => {
 };
 
 export const errorHandler = (res, error) => {
-  const errorMessage = error.message;
-
-  console.log(errorMessage);
-  if (errorMessage.includes("::")) {
-    const [status, message] = errorMessage.split("::");
-    const statusCode = parseInt(status, 10); // Parse status as an integer
-    res.status(statusCode).json({ error: message });
+  if (error instanceof CustomError) {
+    res.status(error.code).json({ error: error.message });
   } else res.status(500).json({ error: error.message });
+};
+
+export const verifyAuthentication = async (req, res, next) => {
+  // let refreshToken = req.cookies.refresh_token;
 };
