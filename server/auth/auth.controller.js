@@ -1,14 +1,15 @@
 import bcrypt from "bcrypt";
 import { errorHandler, generateJWT } from "../middlewares/auth.middlewares.js";
 import User from "./../user/user.model.js";
-import jwt from "jsonwebtoken";
 import {
   RegisterationValidation,
   LoginValidation,
 } from "./../validation/user.validation.js";
 
-// /** LOGIN USER */
-export const login = async (req, res) => {
+// @desc    Auth user, save refresh token in cookie , generate and send access token
+// @route   POST /api/auth/login
+// @access  Public
+export const login = async (req, res, next) => {
   try {
     let { email, password } = req.body;
 
@@ -20,37 +21,35 @@ export const login = async (req, res) => {
     const { error, value } = LoginValidation.validate(dataToValidate);
 
     if (error) {
-      console.error("401::", error.details[0].message);
-      throw new Error("401::", error.details[0].message); // Fixed the error variable
-    } else {
-      console.log("Validated Data:", value);
+      console.error("401::" + error.details[0].message);
+      throw new Error("401::" + error.details[0].message); // Fixed the error variable
     }
 
     const user = await User.findOne({ email: email });
 
     if (!user) {
-      throw new Error("Invalid email or password");
+      throw new Error("401::Invalid credentials");
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) throw new Error("Invalid email or password");
+    if (!isMatch) throw new Error("401::Invalid credentials");
 
     // generate accessToken
     const accessToken = generateJWT(
       user,
-      "1m" /*15min apres*/,
+      "15m" /*15min*/,
       process.env.ACCESS_TOKEN_SECRET
     );
 
-    res.set("Authorization", `Bearer ${accessToken}`);
+    // res.set("Authorization", `Bearer ${accessToken}`);
 
     const refreshToken = generateJWT(
       user,
-      "364d",
+      "364d" /*1year*/,
       process.env.REFRESH_TOKEN_SECRET
     );
 
-    res.cookie("jwt", refreshToken, {
+    res.cookie("refresh_token", refreshToken, {
       httpOnly: true,
       secure: true,
       sameSite: "None",
@@ -61,13 +60,28 @@ export const login = async (req, res) => {
 
     res
       .status(200)
-      .json({ token: accessToken, user, msg: "Logged In successfully!" });
+      .json({ token: accessToken, user, message: "Logged In successfully!" });
   } catch (err) {
-    next(errorHandler(err));
+    next(errorHandler(res, err));
   }
 };
 
-export const register = async (req, res) => {
+// @desc    Logout user
+// @route   POST /api/auth/logout
+// @access  Private
+export const logout = async (req, res, next) => {
+  try {
+    res.cookie("refresh_token", null, { expires: new Date(0), httpOnly: true });
+    res.status(200).json({ message: "user logged out successfully" });
+  } catch (error) {
+    next(errorHandler(res, err));
+  }
+};
+
+// @desc    Register a new user
+// @route   POST /api/auth/register
+// @access  Public
+export const register = async (req, res, next) => {
   try {
     let { name, phoneNumber, email, address, password, isAdmin } = req.body;
 
@@ -86,11 +100,12 @@ export const register = async (req, res) => {
     const { error, value } = RegisterationValidation.validate(dataToValidate);
 
     if (error) {
-      throw new Error("401::", error.details[0].message); // Fixed the error variable
+      throw new Error("401::" + error.details[0].message); // Fixed the error variable
     }
+
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      throw new Error("User already exists"); // Removed the object notation for error message
+      throw new Error("409::User already exists"); // Removed the object notation for error message
     }
 
     const salt = await bcrypt.genSalt();
@@ -108,11 +123,13 @@ export const register = async (req, res) => {
     const savedUser = await newUser.save();
     const { password: savedPassword, ...userWithoutPassword } = savedUser;
 
+    console.log(userWithoutPassword._doc);
+
     res.status(200).json({
       user: userWithoutPassword._doc,
       message: "Signed Up successfully",
     });
   } catch (error) {
-    next(errorHandler(error));
+    next(errorHandler(res, error));
   }
 };

@@ -1,0 +1,12 @@
+{
+  "name": "John Doe",
+  "phoneNumber": "0551234567",
+  "email": "user@gmail.com",
+  "address": {
+    "street": "123 Main Street",
+    "city": "New York",
+    "zipCode": "10001"
+  },
+  "password": "@User911",
+  "isAdmin": false
+}
