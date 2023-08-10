@@ -1,4 +1,4 @@
-import { errorHandler } from "../middlewares/auth.middlewares.js";
+import { errorHandler } from "./../../middlewares/auth.middlewares.js";
 import User from "./user.model.js";
 
 // @desc    Update profile picture

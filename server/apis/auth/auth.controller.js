@@ -1,11 +1,14 @@
 import bcrypt from "bcrypt";
-import { errorHandler, generateJWT } from "../middlewares/auth.middlewares.js";
+import {
+  errorHandler,
+  generateJWT,
+} from "../../middlewares/auth.middlewares.js";
 import User from "./../user/user.model.js";
 import {
   RegisterationValidation,
   LoginValidation,
-} from "./../validation/user.validation.js";
-import CustomError from "../utils/CustomError.js";
+} from "../../validation/user.validation.js";
+import CustomError from "../../utils/CustomError.js";
 import jwt from "jsonwebtoken";
 
 // @desc    Auth user, save refresh token in cookie , generate and send access token
