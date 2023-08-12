@@ -1,6 +1,7 @@
 .login-page {
   height: 100vh;
   gap: 1.5em;
+  margin: 0 10%;
 }
 
 .login-page .bg-img {
@@ -12,6 +13,7 @@
   width: 60%;
 
   object-fit: cover;
+  transition: all 0.5s ease-in-out;
 }
 
 .login-page .login-statements {
@@ -20,6 +22,7 @@
 
   padding-right: 2em;
   text-align: left;
+  transition: all 0.5s ease-in-out;
 }
 
 .login-page .login-statements .head-st {
@@ -31,4 +34,14 @@
   color: #474947;
   font-size: 15px;
   font-weight: 400;
+}
+
+@media screen and (max-width: 900px) {
+  .login-page .bg-img {
+    width: 100%;
+    filter: opacity(0.5);
+  }
+  .login-page .login-statements {
+    display: none;
+  }
 }
