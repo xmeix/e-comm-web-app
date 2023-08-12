@@ -12,7 +12,8 @@ const Form = ({ elements, buttons, otherButtons }) => {
         <button
           className="form-btn"
           style={{
-            backgroundColor: b.color,
+            backgroundColor: b.bgcolor,
+            color: b.color,
             width: b.width,
             alignSelf: "flex-end",
           }}

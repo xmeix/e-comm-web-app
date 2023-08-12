@@ -26,12 +26,12 @@
 }
 
 .login-page .login-statements .head-st {
-  color: var(--black);
+  color: var(--white);
   font-size: 20px;
   font-weight: 500;
 }
 .login-page .login-statements .sec-st {
-  color: var(--black);
+  color: var(--white);
   font-size: 15px;
   font-weight: 400;
 }
@@ -39,7 +39,7 @@
 @media screen and (max-width: 900px) {
   .login-page .bg-img {
     width: 100%;
-    filter: opacity(0.5);
+    filter: blur(2px);
   }
   .login-page .login-statements {
     display: none;

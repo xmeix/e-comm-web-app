@@ -8,7 +8,14 @@ const LoginPage = () => {
       <img src={bg} alt="" className="bg-img" />
       <Form
         elements={["e-mail", "password"]}
-        buttons={[{ name: "login", color: "var(--pink)", width: "100px" }]}
+        buttons={[
+          {
+            name: "login",
+            bgcolor: "var(--pink)",
+            color: "var(--white)",
+            width: "100px",
+          },
+        ]}
         otherButtons={["sign in with google"]}
       />
       <div className="login-statements">
