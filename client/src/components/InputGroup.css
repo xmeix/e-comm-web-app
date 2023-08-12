@@ -1,8 +1,16 @@
 .input-group input {
   border-radius: 5px;
   border: 1px solid var(--light-gray);
-
+  outline: none;
   padding: 0.7em;
+}
+.input-group input::placeholder {
+  outline: none;
+  color: var(--gray);
+}
+.input-group input:hover,
+.input-group input:focus {
+  border: 1px solid var(--gray);
 }
 .input-group label {
   color: var(--black);

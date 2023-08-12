@@ -31,7 +31,7 @@
   font-weight: 500;
 }
 .login-page .login-statements .sec-st {
-  color: #474947;
+  color: var(--black);
   font-size: 15px;
   font-weight: 400;
 }

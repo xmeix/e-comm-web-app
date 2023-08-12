@@ -1,5 +1,5 @@
 import "./LoginPage.css";
-import bg from "./../assets/bg.svg";
+import bg from "./../assets/bg.jpg";
 import InputGroup from "../components/InputGroup";
 import Form from "../components/Form/Form";
 const LoginPage = () => {
