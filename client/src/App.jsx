@@ -1,7 +1,12 @@
 import "./App.css";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
-  return <div className="app">{/* Create routes for forms + navbar */}</div>;
+  return (
+    <div className="app">
+      <LoginPage />
+    </div>
+  );
 }
 
 export default App;

@@ -1,0 +1,34 @@
+.login-page {
+  height: 100vh;
+  gap: 1.5em;
+}
+
+.login-page .bg-img {
+  position: absolute;
+  right: 0;
+  z-index: -1;
+
+  height: 100vh;
+  width: 60%;
+
+  object-fit: cover;
+}
+
+.login-page .login-statements {
+  height: 150px;
+  align-self: flex-end;
+
+  padding-right: 2em;
+  text-align: left;
+}
+
+.login-page .login-statements .head-st {
+  color: var(--black);
+  font-size: 20px;
+  font-weight: 500;
+}
+.login-page .login-statements .sec-st {
+  color: #474947;
+  font-size: 15px;
+  font-weight: 400;
+}

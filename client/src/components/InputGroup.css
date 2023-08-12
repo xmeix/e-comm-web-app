@@ -1,0 +1,15 @@
+.input-group input {
+  border-radius: 5px;
+  border: 1px solid var(--light-gray);
+
+  padding: 0.7em;
+}
+.input-group label {
+  color: var(--black);
+  font-size: 15px;
+  font-weight: 400;
+
+  text-transform: capitalize;
+  padding-left: 0.5em;
+  margin-bottom: 0.3em;
+}

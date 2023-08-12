@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
       min: 2,
-      max: 100,
+      max: 60,
     },
     phoneNumber: {
       type: String,
