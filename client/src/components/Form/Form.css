@@ -2,12 +2,14 @@
   background-color: var(--white);
   /* border: solid 1px var(--light-gray); */
   border-radius: 10px;
+
   padding: 2em;
   width: 500px;
-  min-width: 500px;
+  min-width: 200px;
   max-width: 500px;
 
   gap: 1em;
+  border: solid 1px var(--pink);
 }
 .form-btn {
   outline: none;
@@ -17,7 +19,6 @@
   padding: 0.7em;
   font-size: 13px;
   font-weight: 500;
-   
 }
 
 .form .form-logo {

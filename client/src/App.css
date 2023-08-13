@@ -14,3 +14,18 @@
 .justify-center {
   justify-content: center;
 }
+.hr {
+  font-size: 13px;
+  color: var(--gray);
+  text-align: center;
+  text-transform: capitalize;
+}
+.hr::before,
+.hr::after {
+  display: inline-block;
+  content: "";
+  border-top: 1px solid var(--light-gray);
+  width: 3em;
+  margin: 0 1rem;
+  transform: translateY(-0.2em);
+}

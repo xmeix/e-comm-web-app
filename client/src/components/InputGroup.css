@@ -21,3 +21,15 @@
   padding-left: 0.5em;
   margin-bottom: 0.3em;
 }
+
+.input-group .forget-pass {
+  font-size: 12px;
+  font-weight: 400;
+  padding: 0.5em 1em;
+  align-self: flex-end;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+.input-group .forget-pass:hover {
+  text-decoration: underline;
+}

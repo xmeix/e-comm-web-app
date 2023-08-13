@@ -21,9 +21,7 @@ const Form = ({ elements, buttons, otherButtons }) => {
           {b.name}
         </button>
       ))}{" "}
-      {otherButtons && (
-        <hr style={{ borderTop: "solid 0.5px var(--light-gray)" }} />
-      )}
+      {otherButtons && <p className="hr"> or sign in with</p>}
       {otherButtons?.map((b) => (
         <button className="form-btn">{b}</button>
       ))}

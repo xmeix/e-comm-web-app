@@ -8,12 +8,17 @@
   /* --pink: #f5d3ca; */
   --light-gray: #d9d9d9;
   --gray: #b3b1b1;
+  --dark-gray: #a8a6a6;
 }
 
-* {
+body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: var(--font);
   color: var(--black);
+}
+
+button {
+  cursor: pointer;
 }
