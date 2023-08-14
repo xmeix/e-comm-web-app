@@ -33,13 +33,17 @@
 .login-page .login-statements .head-st {
   color: var(--white);
   font-size: 25px;
-  font-weight: 500;
+  font-weight: 600;
+  margin: 0;
+  text-transform: uppercase;
 }
 
 .login-page .login-statements .sec-st {
   color: var(--white);
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 400;
+  margin: 0;
+  text-transform: capitalize;
 }
 
 @media screen and (max-width: 900px) {

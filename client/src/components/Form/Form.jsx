@@ -25,7 +25,7 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
         </div>
       )}
       {elements?.map((e, i) => (
-        <InputGroup key={i} label={e} />
+        <InputGroup key={i} input={e} />
       ))}
       {buttons?.map((b, i) => (
         <button

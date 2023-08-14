@@ -1,19 +1,18 @@
 import "./InputGroup.css";
-const InputGroup = ({ label }) => {
+const InputGroup = ({ input }) => {
   return (
     <div className="input-group flex-column">
-      <label htmlFor={label}>{label}</label>
+      <label htmlFor={input.label}>{input.label}</label>
       <input
-        name={label}
-        type={label === "password" ? label : "text"}
-        placeholder={`write down your ${label}`}
+        name={input.label}
+        type={input.inputType}
+        placeholder={`write down your ${input.label}`}
       />
-      {label === "password" && (
+      {input.inputType === "password" && (
         <div
           className="forget-pass"
           onClick={() => console.log("change password")}
         >
-          {" "}
           forgot your password?
         </div>
       )}

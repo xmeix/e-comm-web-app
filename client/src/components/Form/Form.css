@@ -9,7 +9,7 @@
   max-width: 500px;
 
   gap: 1em;
-  /* border: solid 1px var(--blue); */
+  border: solid 1px var(--blue);
   transition: all 0.5s ease-in-out;
 }
 .form-btn {
@@ -23,7 +23,7 @@
 }
 
 .form .form-logo {
-  font-size: 12px;
+  font-size: 9px;
   font-weight: 500;
   text-align: left;
   margin-bottom: 3em;

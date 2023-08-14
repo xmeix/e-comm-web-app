@@ -31,15 +31,18 @@ const LoginPage = () => {
         ];
   const elements =
     type === "login"
-      ? ["e-mail", "password"]
+      ? [
+          { label: "E-mail", inputType: "text" },
+          { label: "Password", inputType: "password" },
+        ]
       : [
-          "name",
-          "phone number",
-          "street",
-          "city",
-          "zip-code",
-          "e-mail",
-          "password",
+          { label: "Name", inputType: "text" },
+          { label: "Phone Number", inputType: "tel" },
+          { label: "Street", inputType: "text" },
+          { label: "City", inputType: "text" },
+          { label: "ZIP Code", inputType: "number" },
+          { label: "E-mail", inputType: "email" },
+          { label: "Password", inputType: "password" },
         ];
 
   return (
