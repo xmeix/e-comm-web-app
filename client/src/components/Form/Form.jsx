@@ -1,15 +1,35 @@
+import { useState } from "react";
 import InputGroup from "../InputGroup";
 import "./Form.css";
-const Form = ({ elements, buttons, otherButtons }) => {
+const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
+  const [type, setType] = useState("login");
+
+  const handleChange = (t) => {
+    setType(t);
+    onTypeChanged(t);
+  };
+
   return (
     <form className="flex-column justify-center login-form form">
       <div className="form-logo">BledBay</div>
-      <div className="form-title">Login</div>
-      {elements?.map((e) => (
-        <InputGroup label={e} />
+      <div className="form-title">
+        {type === "login" ? "Login" : "Register"}
+      </div>
+      {type === "login" ? (
+        <div className="no-account" onClick={() => handleChange("register")}>
+          you don't have an account? <span>register here</span>.
+        </div>
+      ) : (
+        <div className="no-account" onClick={() => handleChange("login")}>
+          you already have an account? <span>log in here</span>.
+        </div>
+      )}
+      {elements?.map((e, i) => (
+        <InputGroup key={i} label={e} />
       ))}
-      {buttons?.map((b) => (
+      {buttons?.map((b, i) => (
         <button
+          key={i}
           className="form-btn"
           style={{
             backgroundColor: b.bgcolor,
@@ -21,9 +41,16 @@ const Form = ({ elements, buttons, otherButtons }) => {
           {b.name}
         </button>
       ))}{" "}
-      {otherButtons && <p className="hr"> or sign in with</p>}
-      {otherButtons?.map((b) => (
-        <button className="form-btn">{b}</button>
+      {otherButtons && (
+        <p className="hr">
+          {" "}
+          or {type === "login" ? "sign in " : "sign up "} with
+        </p>
+      )}
+      {otherButtons?.map((b, i) => (
+        <button key={i} className="form-btn">
+          {b}
+        </button>
       ))}
     </form>
   );

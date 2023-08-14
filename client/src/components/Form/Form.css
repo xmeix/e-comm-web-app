@@ -9,7 +9,8 @@
   max-width: 500px;
 
   gap: 1em;
-  border: solid 1px var(--pink);
+  /* border: solid 1px var(--blue); */
+  transition: all 0.5s ease-in-out;
 }
 .form-btn {
   outline: none;
@@ -32,4 +33,18 @@
   font-weight: 800;
   text-transform: uppercase;
   text-align: center;
+}
+
+.form .no-account {
+  font-size: 11px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.form .no-account span {
+  color: var(--blue);
+}
+
+.form .no-account span:hover {
+  text-decoration: underline;
 }
