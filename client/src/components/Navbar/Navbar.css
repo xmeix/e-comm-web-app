@@ -16,6 +16,7 @@
 .navbar .nav-logo {
   font-size: 13px;
   font-weight: 700;
+  cursor: pointer;
 }
 .navbar .nav-p-items {
   width: 150px;
@@ -26,16 +27,18 @@
 .navbar .nav-p-items .nav-icon {
   color: var(--black);
   font-size: 23px;
+  cursor: pointer;
 }
 
 .cart-item-count {
   position: relative;
   top: -2em;
   right: 0.6em;
-  border: solid 1px var(--black);
-  background-color: var(--blue);
-  color: var(--white);
+  /* border: solid 1px var(--blue); */
+  background-color: var(--light-blue);
+  color: var(--blue);
   font-size: 10px;
+  font-weight: 700;
   padding: 1px 5px;
   border-radius: 100px;
 }
