@@ -1,6 +1,5 @@
 .form {
   background-color: var(--white);
-  /* border: solid 1px var(--light-gray); */
   border-radius: 10px;
 
   padding: 2em;
@@ -9,7 +8,7 @@
   max-width: 500px;
 
   gap: 1em;
-  border: solid 1px var(--blue);
+  /* border: solid 1px var(--blue); */
   transition: all 0.5s ease-in-out;
 }
 .form-btn {
@@ -20,6 +19,16 @@
   padding: 0.7em;
   font-size: 13px;
   font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  color: var(--black);
+}
+
+.form-btn .btn-icon {
+  font-size: 15px;
+  color: #4285f4;
 }
 
 .form .form-logo {

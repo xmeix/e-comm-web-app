@@ -6,7 +6,6 @@ import User from "./user.model.js";
 // @access  Private
 export const updateProfileImage = async (req, res, next) => {
   try {
-    console.log(req.file);
     const imgPath = `http://localhost:3001/${req.file.path}`;
 
     const updatedUser = await User.findByIdAndUpdate(

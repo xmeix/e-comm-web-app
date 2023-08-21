@@ -6,7 +6,7 @@ const InputGroup = ({ input }) => {
       <input
         name={input.label}
         type={input.inputType}
-        placeholder={`write down your ${input.label}`}
+        placeholder={input.content}
       />
       {input.inputType === "password" && (
         <div

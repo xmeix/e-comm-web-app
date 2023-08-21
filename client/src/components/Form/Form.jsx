@@ -1,6 +1,7 @@
 import { useState } from "react";
 import InputGroup from "../InputGroup";
 import "./Form.css";
+import GoogleIcon from "@mui/icons-material/Google";
 const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
   const [type, setType] = useState("login");
 
@@ -49,6 +50,7 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
       )}
       {otherButtons?.map((b, i) => (
         <button key={i} className="form-btn">
+          {b === "google" && <GoogleIcon className="btn-icon" />}
           {b}
         </button>
       ))}

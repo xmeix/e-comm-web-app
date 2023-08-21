@@ -1,12 +1,26 @@
-{
-  "name": "John Doe",
-  "phoneNumber": "0551234567",
-  "email": "user@gmail.com",
-  "address": {
-    "street": "123 Main Street",
-    "city": "New York",
-    "zipCode": "10001"
+[
+  {
+    "name": "John Doe",
+    "phoneNumber": "0551234567",
+    "email": "user@gmail.com",
+    "address": {
+      "street": "123 Main Street",
+      "city": "New York",
+      "zipCode": "10001"
+    },
+    "password": "@User911",
+    "isAdmin": false
   },
-  "password": "@User911",
-  "isAdmin": false
-}
+  {
+    "name": "Boualouache lamia",
+    "phoneNumber": "0551234567",
+    "email": "admin@gmail.com",
+    "address": {
+      "street": "123 Main Street",
+      "city": "New York",
+      "zipCode": "10001"
+    },
+    "password": "@Admin911",
+    "isAdmin": true
+  }
+]

@@ -3,7 +3,9 @@
   border: 1px solid var(--light-gray);
   outline: none;
   padding: 0.7em;
-  font-family: var(--font);
+  font-family: var(--font) !important;
+  color: var(--black) !important;
+  font-weight: 500 !important;
 }
 .input-group input::placeholder {
   outline: none;

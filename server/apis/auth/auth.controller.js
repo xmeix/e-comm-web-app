@@ -88,17 +88,12 @@ export const logout = async (req, res, next) => {
 // @access  Public
 export const register = async (req, res, next) => {
   try {
-    let { name, phoneNumber, email, address, password, isAdmin } = req.body;
+    let { name, email, password, isAdmin } = req.body;
 
     const dataToValidate = {
       name,
-      phoneNumber,
       email,
-      address: {
-        street: address.street,
-        city: address.city,
-        zipCode: address.zipCode,
-      },
+
       password,
     };
 
@@ -118,9 +113,7 @@ export const register = async (req, res, next) => {
 
     const newUser = new User({
       name,
-      phoneNumber,
       email,
-      address,
       password: passwordHash,
       isAdmin,
     });

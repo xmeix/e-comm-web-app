@@ -13,12 +13,12 @@ const UserSchema = new mongoose.Schema(
     },
     phoneNumber: {
       type: String,
-      required: true,
+      // required: true,
       validate: /^(0)(5|6|7)[0-9]{8}$/,
     },
     email: {
       type: String,
-      required: true,
+      // required: true,
       unique: true,
     },
     address: {
@@ -30,6 +30,7 @@ const UserSchema = new mongoose.Schema(
       },
       zipCode: {
         type: String,
+
         validate: /^\d{5}$/,
       },
     },
@@ -39,7 +40,6 @@ const UserSchema = new mongoose.Schema(
     },
     isAdmin: {
       type: Boolean,
-      required: false,
     },
   },
   {
