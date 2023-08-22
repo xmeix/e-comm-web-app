@@ -21,19 +21,21 @@ const UserSchema = new mongoose.Schema(
       // required: true,
       unique: true,
     },
-    address: {
-      street: {
-        type: String,
-      },
-      city: {
-        type: String,
-      },
-      zipCode: {
-        type: String,
+    address: [
+      {
+        street: {
+          type: String,
+        },
+        city: {
+          type: String,
+        },
+        zipCode: {
+          type: String,
 
-        validate: /^\d{5}$/,
+          validate: /^\d{5}$/,
+        },
       },
-    },
+    ],
     password: {
       type: String,
       required: true,
