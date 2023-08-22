@@ -1,5 +1,11 @@
 import express from "express";
-import { login, loginWithGoogle, logout, refresh, register } from "../auth/auth.controller.js";
+import {
+  login,
+  loginWithGoogle,
+  logout,
+  refresh,
+  register,
+} from "../auth/auth.controller.js";
 import { verifyToken } from "../../middlewares/auth.middlewares.js";
 import { addAdditionnalUserInfo } from "../user/user.controller.js";
 import { getGoogleAuthURL } from "../../utils/googleAuthURL.js";
@@ -11,6 +17,9 @@ router.post("/register", register);
 router.post("/login", login);
 router.get("/logout", logout);
 router.get("/refresh", refresh);
-router.get("/google/url", loginWithGoogle);
+router.get("/google/url", (req, res) => {
+  res.redirect(getGoogleAuthURL());
+});
+router.get("/oauth/google", loginWithGoogle);
 
 export default router;

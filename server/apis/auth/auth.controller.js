@@ -10,13 +10,16 @@ import {
 } from "../../validation/user.validation.js";
 import CustomError from "../../utils/CustomError.js";
 import jwt from "jsonwebtoken";
-
+import { getGoogleToken } from "../../utils/googleAuthURL.js";
 // @desc    Auth user, save refresh token in cookie , generate and send access token
 // @route   POST /api/auth/google
 // @access  Public
 export const loginWithGoogle = async (req, res, next) => {
+  const code = req.query.code;
 
+  const { id_token, access_token } = await getGoogleToken({ code });
   
+  res.status(200).json({ id_token, access_token });
 };
 
 // @desc    Auth user, save refresh token in cookie , generate and send access token
