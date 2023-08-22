@@ -19,6 +19,14 @@ export const RegisterationValidation = Joi.object().keys({
     .required()
     .label("Password"),
 });
+export const PasswordValidation = Joi.object().keys({
+  password: Joi.string()
+    .regex(
+      /^(?!.*\s)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{8,16}$/
+    )
+    .required()
+    .label("Password"),
+});
 
 export const LoginValidation = Joi.object().keys({
   email: Joi.string().email().required().label("Email"),
