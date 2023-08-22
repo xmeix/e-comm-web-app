@@ -46,3 +46,19 @@ export async function getGoogleToken({ code }) {
     throw new CustomError(400, "Failed to fetch google oauth tokens"); // Fixed the error variable
   }
 }
+
+export async function getGoogleUser({ id_token, access_token }) {
+  try {
+    const res = await axios.get(
+      `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${access_token}`,
+      {
+        headers: {
+          Authorization: `Bearer ${id_token}`,
+        },
+      }
+    );
+    return res.data;
+  } catch (error) {
+    throw new CustomError(400, "Couldn't get user info"); // Fixed the error variable
+  }
+}

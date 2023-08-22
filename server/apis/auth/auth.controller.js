@@ -10,16 +10,68 @@ import {
 } from "../../validation/user.validation.js";
 import CustomError from "../../utils/CustomError.js";
 import jwt from "jsonwebtoken";
-import { getGoogleToken } from "../../utils/googleAuthURL.js";
+import { getGoogleToken, getGoogleUser } from "../../utils/googleAuthURL.js";
 // @desc    Auth user, save refresh token in cookie , generate and send access token
 // @route   POST /api/auth/google
 // @access  Public
 export const loginWithGoogle = async (req, res, next) => {
   const code = req.query.code;
-
   const { id_token, access_token } = await getGoogleToken({ code });
-  
-  res.status(200).json({ id_token, access_token });
+  const googleUser = await getGoogleUser({ id_token, access_token });
+
+  try {
+    //
+    if (!googleUser.verified_email) {
+      throw new CustomError(403, "Google account is not verified!");
+    }
+    // upsert the user (find user and change email , if it doesnt exist than create it )
+    const user = await User.findOneAndUpdate(
+      {
+        email: googleUser.email,
+      },
+      {
+        email: googleUser.email,
+        name: googleUser.name,
+        picture: googleUser.picture,
+        isAdmin: false,
+        
+      },
+      {
+        upsert: true,
+        new: true,
+      }
+    );
+
+    console.log(user);
+
+    // generate accessToken
+    const accessToken = generateJWT(
+      user,
+      "5m",
+      process.env.ACCESS_TOKEN_SECRET
+    );
+
+    res.set("Authorization", `Bearer ${accessToken}`);
+
+    const refreshToken = generateJWT(
+      user,
+      "7d" /*7days*/,
+      process.env.REFRESH_TOKEN_SECRET
+    );
+
+    res.cookie("refresh_token", refreshToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+
+    res
+      .status(200)
+      .json({ token: accessToken, user, message: "Logged In successfully!" });
+  } catch (err) {
+    next(errorHandler(res, err));
+  }
 };
 
 // @desc    Auth user, save refresh token in cookie , generate and send access token
@@ -58,7 +110,6 @@ export const login = async (req, res, next) => {
     );
 
     res.set("Authorization", `Bearer ${accessToken}`);
-
     const refreshToken = generateJWT(
       user,
       "7d" /*7days*/,
