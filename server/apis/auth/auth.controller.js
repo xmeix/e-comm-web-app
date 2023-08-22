@@ -34,7 +34,6 @@ export const loginWithGoogle = async (req, res, next) => {
         name: googleUser.name,
         picture: googleUser.picture,
         isAdmin: false,
-        
       },
       {
         upsert: true,
@@ -51,6 +50,7 @@ export const loginWithGoogle = async (req, res, next) => {
       process.env.ACCESS_TOKEN_SECRET
     );
 
+    // auth
     res.set("Authorization", `Bearer ${accessToken}`);
 
     const refreshToken = generateJWT(
