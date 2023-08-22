@@ -12,6 +12,14 @@ import CustomError from "../../utils/CustomError.js";
 import jwt from "jsonwebtoken";
 
 // @desc    Auth user, save refresh token in cookie , generate and send access token
+// @route   POST /api/auth/google
+// @access  Public
+export const loginWithGoogle = async (req, res, next) => {
+
+  
+};
+
+// @desc    Auth user, save refresh token in cookie , generate and send access token
 // @route   POST /api/auth/login
 // @access  Public
 export const login = async (req, res, next) => {
