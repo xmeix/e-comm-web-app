@@ -12,7 +12,7 @@ export const updateProfileImage = async (req, res, next) => {
     const imgPath = `http://localhost:3001/${req.file.path}`;
 
     const updatedUser = await User.findByIdAndUpdate(
-      req.params.id,
+      req.user.id,
       {
         $set: { profileImage: imgPath, ...req.body },
       },

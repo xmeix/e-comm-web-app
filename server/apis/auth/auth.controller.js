@@ -41,8 +41,6 @@ export const loginWithGoogle = async (req, res, next) => {
       }
     );
 
-    console.log(user);
-
     // generate accessToken
     const accessToken = generateJWT(
       user,
@@ -61,11 +59,10 @@ export const loginWithGoogle = async (req, res, next) => {
 
     res.cookie("refresh_token", refreshToken, {
       httpOnly: true,
-      secure: true,
+      secure: false,
       sameSite: "None",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
-
     res
       .status(200)
       .json({ token: accessToken, user, message: "Logged In successfully!" });
@@ -109,25 +106,30 @@ export const login = async (req, res, next) => {
       process.env.ACCESS_TOKEN_SECRET
     );
 
-    res.set("Authorization", `Bearer ${accessToken}`);
+    // res.set("Authorization", `Bearer ${accessToken}`);
     const refreshToken = generateJWT(
       user,
       "7d" /*7days*/,
       process.env.REFRESH_TOKEN_SECRET
     );
 
+    res.cookie("access_token", accessToken, {
+      httpOnly: true,
+      secure: false,
+      sameSite: "None",
+      maxAge: 5 * 60 * 1000,
+    });
+
     res.cookie("refresh_token", refreshToken, {
       httpOnly: true,
-      secure: true,
+      secure: false,
       sameSite: "None",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     delete user.password;
 
-    res
-      .status(200)
-      .json({ token: accessToken, user, message: "Logged In successfully!" });
+    res.status(200).json({ user, message: "Logged In successfully!" });
   } catch (err) {
     next(errorHandler(res, err));
   }
@@ -139,9 +141,11 @@ export const login = async (req, res, next) => {
 export const logout = async (req, res, next) => {
   try {
     res.cookie("refresh_token", null, { expires: new Date(0), httpOnly: true });
+    res.cookie("access_token", null, { expires: new Date(0), httpOnly: true });
+    res.redirect("http://127.0.0.1:5173/login");
     res.status(200).json({ message: "user logged out successfully" });
   } catch (error) {
-    next(errorHandler(res, err));
+    next(errorHandler(res, error));
   }
 };
 
@@ -189,40 +193,6 @@ export const register = async (req, res, next) => {
       user: userWithoutPassword._doc,
       message: "Signed Up successfully",
     });
-  } catch (error) {
-    next(errorHandler(res, error));
-  }
-};
-// @desc    Register a new user
-// @route   POST /api/auth/register
-// @access  Public
-export const refresh = async (req, res, next) => {
-  const cookies = req.cookies;
-  try {
-    if (!cookies?.refresh_token) {
-      throw new CustomError(401, "Unauthorized");
-    }
-
-    const refreshToken = cookies.refresh_token;
-
-    jwt.verify(
-      refreshToken,
-      process.env.REFRESH_TOKEN_SECRET,
-      async (err, decoded) => {
-        if (err) return res.status(403).json({ error: "Forbidden" });
-
-        const foundUser = await User.findOne({ email: decoded.UserInfo.email });
-        if (!foundUser) return res.status(401).json({ error: "Unauthorized" });
-
-        const accessToken = generateJWT(
-          foundUser,
-          "5m",
-          process.env.ACCESS_TOKEN_SECRET
-        );
-        res.set("Authorization", `Bearer ${accessToken}`);
-        res.status(200).json({ accessToken });
-      }
-    );
   } catch (error) {
     next(errorHandler(res, error));
   }

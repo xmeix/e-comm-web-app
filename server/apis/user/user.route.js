@@ -1,5 +1,5 @@
 import express from "express";
-import { verifyToken } from "../../middlewares/auth.middlewares.js";
+import { verifyCookieToken } from "../../middlewares/auth.middlewares.js";
 import {
   addAdditionnalUserInfo,
   changePassword,
@@ -9,13 +9,13 @@ import { upload } from "../../utils/uploadVars.js";
 const router = express.Router();
 
 router.post(
-  "/:id/image",
-  verifyToken,
+  "/image",
+  verifyCookieToken,
   upload.single("image"),
   updateProfileImage
 );
 
-router.patch("/addInfo", verifyToken, addAdditionnalUserInfo);
-router.patch("/changepassword", verifyToken, changePassword);
+router.patch("/addInfo", verifyCookieToken, addAdditionnalUserInfo);
+router.patch("/changepassword", verifyCookieToken, changePassword);
 
 export default router;
