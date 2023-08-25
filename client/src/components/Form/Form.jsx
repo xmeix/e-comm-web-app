@@ -22,7 +22,7 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
   const handleInputOnChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name.toLowerCase()]: e.target.value.toLowerCase(),
+      [e.target.name]: e.target.value,
     });
     // console.log(formData);
   };
@@ -30,7 +30,7 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
-      formData === {} ||
+      Object.keys(formData).length === 0 ||
       formData?.email.trim() === "" ||
       formData?.password.trim() === ""
     ) {
@@ -47,9 +47,8 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
 
     console.log("submitting...");
     if (type === "login") {
-      console.log(formData);
-      dispatch(login());
-    } else dispatch(register());
+      dispatch(login(formData));
+    } else dispatch(register(formData));
   };
   return (
     <div className="flex-column justify-center login-form form">

@@ -3,6 +3,7 @@ import { apiService } from "./apiService";
 export const login = createAsyncThunk("auth/login", async (body, thunkAPI) => {
   const { rejectWithValue } = thunkAPI;
   try {
+    console.log("body", body);
     const res = await apiService.public.post("/auth/login/", body);
     return res.data;
   } catch (error) {
