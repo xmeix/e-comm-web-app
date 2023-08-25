@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import InputGroup from "../InputGroup";
 import "./Form.css";
 import GoogleIcon from "@mui/icons-material/Google";
@@ -31,15 +32,15 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
     e.preventDefault();
     if (
       Object.keys(formData).length === 0 ||
-      formData?.email.trim() === "" ||
-      formData?.password.trim() === ""
+      formData?.email?.trim() === "" ||
+      formData?.password?.trim() === ""
     ) {
       console.log("one of the fields is empty");
       return;
     }
 
     if (type !== "login") {
-      if (formData?.name.trim() === "") {
+      if (formData?.name?.trim() === "") {
         console.log("one of the fields is empty");
         return;
       }
@@ -48,7 +49,14 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
     console.log("submitting...");
     if (type === "login") {
       dispatch(login(formData));
-    } else dispatch(register(formData));
+    } else
+      dispatch(register(formData)).then((err) => {
+        console.log(err);
+        if (err.type === "auth/register/fulfilled") {
+          setType("login");
+          onTypeChanged("login");
+        }
+      });
   };
   return (
     <div className="flex-column justify-center login-form form">

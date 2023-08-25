@@ -20,7 +20,7 @@ export const register = createAsyncThunk(
 
       return res.data;
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data.error);
       return rejectWithValue(error.response.data.error);
     }
   }

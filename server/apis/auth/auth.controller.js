@@ -128,8 +128,12 @@ export const login = async (req, res, next) => {
     });
 
     delete user.password;
+    const { password: savedPassword, ...userWithoutPassword } = user;
 
-    res.status(200).json({ user, message: "Logged In successfully!" });
+    res.status(200).json({
+      user: userWithoutPassword._doc,
+      message: "Logged In successfully!",
+    });
   } catch (err) {
     next(errorHandler(res, err));
   }
@@ -186,8 +190,6 @@ export const register = async (req, res, next) => {
 
     const savedUser = await newUser.save();
     const { password: savedPassword, ...userWithoutPassword } = savedUser;
-
-    console.log(userWithoutPassword._doc);
 
     res.status(200).json({
       user: userWithoutPassword._doc,
