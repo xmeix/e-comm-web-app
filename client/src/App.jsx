@@ -4,6 +4,7 @@ import { Suspense, lazy, useEffect } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import { useSelector } from "react-redux";
 import LoginPage from "./pages/LoginPage";
+import Categories from "./pages/categories/Categories";
 
 function App() {
   const { isLoggedIn, loading, error, user } = useSelector(
@@ -11,9 +12,9 @@ function App() {
   );
   return (
     <div className="app">
-      {isLoggedIn && <Navbar />}
+      <Navbar />
       {!isLoggedIn && <LoginPage />}
-      {isLoggedIn && "Home!!!"}
+      {isLoggedIn && <Categories />}
     </div>
   );
 }

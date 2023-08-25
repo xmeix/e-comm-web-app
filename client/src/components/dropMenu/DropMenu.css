@@ -1,0 +1,41 @@
+.drop-menu {
+  position: absolute;
+  top: 3em;
+  right: 2.5em;
+  padding: 1em;
+  width: 140px;
+
+  background-color: var(--white);
+  box-shadow: 0 1px 4px rgb(0, 0, 0, 0.4);
+  border-radius: 15px;
+}
+
+.drop-menu .drop-menu-btn {
+  width: 100%;
+  border-radius: 15px;
+  border: solid 1px var(--light-gray);
+  padding: 0.5em;
+  margin: 0.5em 0;
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.drop-menu .drop-menu-ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.drop-menu .drop-menu-li {
+  padding: 0.3em 1em;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.drop-menu .drop-menu-li:hover {
+  background-color: var(--v-gray);
+}
+.drop-menu .drop-menu-li a {
+  text-decoration: none;
+  color: var(--black);
+  font-size: 12px;
+  letter-spacing: 1px;
+}

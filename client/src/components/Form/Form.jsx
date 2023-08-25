@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import InputGroup from "../InputGroup";
 import "./Form.css";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useDispatch, useSelector } from "react-redux";
 import { login, register } from "./../../store/apiCalls/auth.js";
+import useToast from "../../hooks/useToast";
+import { resetError, setError } from "../../store/slices/authSlice";
 
 const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
   const [type, setType] = useState("login");
   const [formData, setFormData] = useState({});
+  const { Toast, showErrorToast, showSuccessToast } = useToast();
   const { isLoggedIn, loading, error, user } = useSelector(
     (state) => state.auth
   );
@@ -18,6 +21,7 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
     setType(t);
     onTypeChanged(t);
     setFormData({});
+    dispatch(resetError());
   };
 
   const handleInputOnChange = (e) => {
@@ -35,13 +39,14 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
       formData?.email?.trim() === "" ||
       formData?.password?.trim() === ""
     ) {
-      console.log("one of the fields is empty");
+      dispatch(setError("fill all fields!"));
       return;
     }
 
     if (type !== "login") {
       if (formData?.name?.trim() === "") {
-        console.log("one of the fields is empty");
+        dispatch(setError("fill all fields!"));
+
         return;
       }
     }
@@ -57,9 +62,18 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
           onTypeChanged("login");
         }
       });
+    dispatch(resetError());
   };
+
+  useEffect(() => {
+    showErrorToast(error);
+  }, [error]);
+
   return (
-    <div className="flex-column justify-center login-form form">
+    <form
+      autoComplete="off"
+      className="flex-column justify-center login-form form"
+    >
       <div className="form-logo">BledBay</div>
       <div className="form-title">
         {type === "login" ? "Login" : "Register"}
@@ -78,6 +92,7 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
       ))}
       {buttons?.map((b, i) => (
         <button
+          disabled={loading}
           key={i}
           className="form-btn"
           style={{
@@ -109,7 +124,8 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
           {b}
         </button>
       ))}
-    </div>
+      <Toast />
+    </form>
   );
 };
 

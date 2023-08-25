@@ -1,0 +1,35 @@
+.toast-error {
+  position: fixed;
+  top: 6%;
+  right: 30%;
+  left: 30%;
+  padding: 0.5em;
+  text-align: center;
+  font-size: 11px;
+  color: var(--white);
+  background-color: #1e1547a9;
+  border-radius: 5px;
+}
+
+.toast-success {
+  padding: 0.5em;
+  text-align: center;
+  font-size: 13px;
+
+  color: var(--white);
+  border-radius: 5px;
+  background-color: #34d4c9;
+}
+
+/* Mint Green: #7BE495
+Teal: #34D4C9
+Pale Green: #B5E7A0
+Light Blue: #9AD1D4
+Soft Purple: #B794F4
+Error Toast:
+
+Coral: #FF7F50
+Deep Red: #FF4D4D
+Dark Purple: #A569BD
+Burnt Orange: #FFA500
+Crimson: #DC143C */
