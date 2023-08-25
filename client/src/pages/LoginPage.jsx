@@ -32,11 +32,11 @@ const LoginPage = () => {
   const elements =
     type === "login"
       ? [
-          { label: "Email", inputType: "email", content: "user@example.com" },
-          { label: "Password", inputType: "password", content: "********" },
+          { label: "email", inputType: "email", content: "user@example.com" },
+          { label: "password", inputType: "password", content: "********" },
         ]
       : [
-          { label: "Name", inputType: "text", content: "John Doe" },
+          { label: "name", inputType: "text", content: "John Doe" },
           // {
           //   label: "Phone Number",
           //   inputType: "tel",
@@ -45,8 +45,8 @@ const LoginPage = () => {
           // { label: "Street", inputType: "text", content: "123 Main St" },
           // { label: "City", inputType: "text", content: "Anytown" },
           // { label: "ZIP Code", inputType: "number", content: "12345" },
-          { label: "Email", inputType: "email", content: "user@example.com" },
-          { label: "Password", inputType: "password", content: "********" },
+          { label: "email", inputType: "email", content: "user@example.com" },
+          { label: "password", inputType: "password", content: "********" },
         ];
 
   return (

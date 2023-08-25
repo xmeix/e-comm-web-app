@@ -6,7 +6,8 @@ export const login = createAsyncThunk("auth/login", async (body, thunkAPI) => {
     const res = await apiService.public.post("/auth/login/", body);
     return res.data;
   } catch (error) {
-    return rejectWithValue(error.response.data.detail);
+    console.log(error.response.data.error);
+    return rejectWithValue(error.response.data.error);
   }
 });
 export const register = createAsyncThunk(
@@ -19,7 +20,7 @@ export const register = createAsyncThunk(
       return res.data;
     } catch (error) {
       console.log(error);
-      return rejectWithValue(error.response.data.detail);
+      return rejectWithValue(error.response.data.error);
     }
   }
 );
@@ -31,6 +32,6 @@ export const logout = createAsyncThunk("/auth/logout", async (_, thunkAPI) => {
 
     return res.data;
   } catch (error) {
-    return rejectWithValue(error.response.data.detail);
+    return rejectWithValue(error.response.data.error);
   }
 });

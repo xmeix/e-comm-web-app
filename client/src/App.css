@@ -14,8 +14,9 @@
 .justify-center {
   justify-content: center;
 }
+
 .hr {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--gray);
   text-align: center;
   text-transform: capitalize;

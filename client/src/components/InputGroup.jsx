@@ -1,5 +1,5 @@
 import "./InputGroup.css";
-const InputGroup = ({ input }) => {
+const InputGroup = ({ input, onChange }) => {
   return (
     <div className="input-group flex-column">
       <label htmlFor={input.label}>{input.label}</label>
@@ -7,6 +7,8 @@ const InputGroup = ({ input }) => {
         name={input.label}
         type={input.inputType}
         placeholder={input.content}
+        onChange={onChange}
+        required
       />
       {input.inputType === "password" && (
         <div

@@ -2,16 +2,57 @@ import { useState } from "react";
 import InputGroup from "../InputGroup";
 import "./Form.css";
 import GoogleIcon from "@mui/icons-material/Google";
+import { useDispatch, useSelector } from "react-redux";
+import { login, register } from "./../../store/apiCalls/auth.js";
+
 const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
   const [type, setType] = useState("login");
+  const [formData, setFormData] = useState({});
+  const { isLoggedIn, loading, error, user } = useSelector(
+    (state) => state.auth
+  );
+  const dispatch = useDispatch();
 
   const handleChange = (t) => {
     setType(t);
     onTypeChanged(t);
+    setFormData({});
   };
 
+  const handleInputOnChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name.toLowerCase()]: e.target.value.toLowerCase(),
+    });
+    // console.log(formData);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (
+      formData === {} ||
+      formData?.email.trim() === "" ||
+      formData?.password.trim() === ""
+    ) {
+      console.log("one of the fields is empty");
+      return;
+    }
+
+    if (type !== "login") {
+      if (formData?.name.trim() === "") {
+        console.log("one of the fields is empty");
+        return;
+      }
+    }
+
+    console.log("submitting...");
+    if (type === "login") {
+      console.log(formData);
+      dispatch(login());
+    } else dispatch(register());
+  };
   return (
-    <form className="flex-column justify-center login-form form">
+    <div className="flex-column justify-center login-form form">
       <div className="form-logo">BledBay</div>
       <div className="form-title">
         {type === "login" ? "Login" : "Register"}
@@ -26,7 +67,7 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
         </div>
       )}
       {elements?.map((e, i) => (
-        <InputGroup key={i} input={e} />
+        <InputGroup key={i} input={e} onChange={handleInputOnChange} />
       ))}
       {buttons?.map((b, i) => (
         <button
@@ -38,6 +79,7 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
             width: b.width,
             alignSelf: "flex-end",
           }}
+          onClick={handleSubmit}
         >
           {b.name}
         </button>
@@ -60,7 +102,7 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
           {b}
         </button>
       ))}
-    </form>
+    </div>
   );
 };
 
