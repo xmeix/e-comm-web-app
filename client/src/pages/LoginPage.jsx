@@ -32,7 +32,7 @@ const LoginPage = () => {
   const elements =
     type === "login"
       ? [
-          { label: "E-mail", inputType: "email", content: "user@example.com" },
+          { label: "Email", inputType: "email", content: "user@example.com" },
           { label: "Password", inputType: "password", content: "********" },
         ]
       : [
@@ -45,7 +45,7 @@ const LoginPage = () => {
           // { label: "Street", inputType: "text", content: "123 Main St" },
           // { label: "City", inputType: "text", content: "Anytown" },
           // { label: "ZIP Code", inputType: "number", content: "12345" },
-          { label: "E-mail", inputType: "email", content: "user@example.com" },
+          { label: "Email", inputType: "email", content: "user@example.com" },
           { label: "Password", inputType: "password", content: "********" },
         ];
 

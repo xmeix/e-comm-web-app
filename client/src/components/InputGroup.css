@@ -17,8 +17,8 @@
 }
 .input-group label {
   color: var(--black);
-  font-size: 15px;
-  font-weight: 400;
+  font-size: 12px;
+  font-weight: 600;
 
   text-transform: capitalize;
   padding-left: 0.5em;
@@ -26,12 +26,12 @@
 }
 
 .input-group .forget-pass {
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 11px;
   padding: 0.5em 1em;
   align-self: flex-end;
   transition: all 0.5s ease-in-out;
   cursor: pointer;
+  font-weight: 500;
 }
 .input-group .forget-pass:hover {
   text-decoration: underline;

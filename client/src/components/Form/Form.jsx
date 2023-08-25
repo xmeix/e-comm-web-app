@@ -49,7 +49,13 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
         </p>
       )}
       {otherButtons?.map((b, i) => (
-        <button key={i} className="form-btn">
+        <button
+          key={i}
+          className="form-btn"
+          style={{
+            backgroundColor: "var(--white)",
+          }}
+        >
           {b === "google" && <GoogleIcon className="btn-icon" />}
           {b}
         </button>

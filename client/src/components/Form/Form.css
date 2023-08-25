@@ -2,7 +2,7 @@
   background-color: var(--white);
   border-radius: 10px;
 
-  padding: 2em;
+  padding: 10%;
   width: 500px;
   min-width: 200px;
   max-width: 500px;
@@ -32,20 +32,21 @@
 }
 
 .form .form-logo {
-  font-size: 9px;
-  font-weight: 500;
+  font-size: 8px;
+  font-weight: 700;
   text-align: left;
   margin-bottom: 3em;
 }
 .form .form-title {
-  font-size: 40px;
-  font-weight: 800;
+  font-size: 45px;
+  font-weight: 700;
   text-transform: uppercase;
   text-align: center;
 }
 
 .form .no-account {
   font-size: 11px;
+  font-weight: 500;
   text-align: center;
   cursor: pointer;
 }

@@ -53,7 +53,7 @@ export const changePassword = async (req, res, next) => {
     });
 
     if (error) {
-      throw new CustomError(400, "Password format isnt secure"); // Fixed the error variable
+      throw new CustomError(400, "Password format isnt secure"); 
     }
 
     // gotta hash it

@@ -4,9 +4,7 @@ import {
   loginWithGoogle,
   logout,
   register,
-} from "../auth/auth.controller.js";
-import { verifyCookieToken } from "../../middlewares/auth.middlewares.js";
-import { addAdditionnalUserInfo } from "../user/user.controller.js";
+} from "../auth/auth.controller.js"; 
 import { getGoogleAuthURL } from "../../utils/googleAuthURL.js";
 // import passport from "passport";
 

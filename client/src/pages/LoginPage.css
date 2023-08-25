@@ -24,7 +24,7 @@
 }
 
 .login-page .login-statements {
-  padding: 2em 0;
+  padding: 4em 0;
   align-self: flex-end;
   text-align: left;
   transition: all 0.5s ease-in-out;
@@ -32,8 +32,8 @@
 
 .login-page .login-statements .head-st {
   color: var(--white);
-  font-size: 25px;
-  font-weight: 600;
+  font-size: 30px;
+  font-weight: 700;
   margin: 0;
   text-transform: uppercase;
 }
