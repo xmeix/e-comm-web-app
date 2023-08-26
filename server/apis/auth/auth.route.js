@@ -15,9 +15,7 @@ router.post("/login", login);
 router.get("/logout", logout);
 // google authentication
 router.post("/google/url", (req, res) => {
-  // res.header("Access-Control-Allow-Origin", "http://localhost:5173");
-  // res.header("Referrer-Policy", "no-referrer-when-downgrade");
-  res.json(getGoogleAuthURL());
+  return res.send(getGoogleAuthURL());
 });
 
 router.get("/oauth/google", loginWithGoogle);

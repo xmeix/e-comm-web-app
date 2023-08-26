@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, loginGoogle, register } from "./../../store/apiCalls/auth.js";
 import useToast from "../../hooks/useToast";
 import { resetError, setError } from "../../store/slices/authSlice";
+import axios from "axios";
+import { apiService } from "../../store/apiCalls/apiService";
 
 const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
   const [type, setType] = useState("login");
@@ -16,6 +18,7 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
     (state) => state.auth
   );
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (t) => {
     setType(t);
@@ -65,11 +68,26 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
     dispatch(resetError());
   };
 
-  const handleGoogleLogin = () => {
-    console.log("google login")
+  const handleGoogleLogin = async () => {
+    console.log("google login");
     dispatch(loginGoogle());
+    // const res = await apiService.public.post("/auth/google/url");
+    // window.location.href = res.data;
   };
 
+  useEffect(() => {
+    async function getMe() {
+      await axios
+        .get("http://localhost:3001/user/", {
+          withCredentials: true,
+        })
+        .then((res) => console.log(res.data));
+    }
+
+    getMe();
+  }, []);
+
+  
   useEffect(() => {
     showErrorToast(error);
   }, [error]);

@@ -9,8 +9,8 @@ export const loginGoogle = createAsyncThunk(
     try {
       const res = await apiService.public.post("/auth/google/url");
 
-      window.location.href = res.data;
-       
+      console.log(res.data);
+      window.open(res.data, "_blank", "rel=noopener noreferrer");
     } catch (error) {
       console.log(error.response.data.error);
       return rejectWithValue(error.response.data.error);
@@ -34,7 +34,6 @@ export const register = createAsyncThunk(
     const { rejectWithValue } = thunkAPI;
     try {
       const res = await apiService.public.post("/auth/register/", body);
-
       return res.data;
     } catch (error) {
       console.log(error.response.data.error);
