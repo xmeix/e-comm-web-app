@@ -24,16 +24,18 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 .drop-menu .drop-menu-li {
-  padding: 0.3em 1em;
+  padding: 0.5em 1em;
   cursor: pointer;
   border-radius: 10px;
 }
 .drop-menu .drop-menu-li:hover {
   background-color: var(--v-gray);
 }
-.drop-menu .drop-menu-li a {
+.drop-menu a {
   text-decoration: none;
   color: var(--black);
   font-size: 12px;

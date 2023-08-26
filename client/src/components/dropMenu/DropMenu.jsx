@@ -17,24 +17,24 @@ const DropMenu = ({ reference }) => {
     <div ref={reference} className="drop-menu">
       <ul className="drop-menu-ul">
         {isLoggedIn && (
-          <li className="drop-menu-li">
-            <NavLink to={"/profile"}>your profile</NavLink>
-          </li>
+          <NavLink className="drop-menu-li" to={"/profile"}>
+            your profile
+          </NavLink>
         )}
-        <li className="drop-menu-li">
-          <NavLink to={"/cart"}>your cart</NavLink>
-        </li>
+        <NavLink to={"/cart"} className="drop-menu-li">
+          your cart
+        </NavLink>
         {isLoggedIn && (
-          <li className="drop-menu-li">
-            <NavLink to={"/orders"}>your orders</NavLink>
-          </li>
+          <NavLink to={"/orders"} className="drop-menu-li">
+            your orders
+          </NavLink>
         )}
-        <li className="drop-menu-li">
-          <NavLink to={"/categories"}>categories</NavLink>
-        </li>{" "}
-        <li className="drop-menu-li">
-          <NavLink to={"/shop"}>articles</NavLink>
-        </li>
+        <NavLink to={"/categories"} className="drop-menu-li">
+          categories
+        </NavLink>{" "}
+        <NavLink to={"/shop"} className="drop-menu-li">
+          articles
+        </NavLink>
       </ul>
 
       <div className="hr" />

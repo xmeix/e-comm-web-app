@@ -1,10 +1,16 @@
 import "./App.css";
-import { Route, Routes, NavLink } from "react-router-dom";
+import { Route, Routes, NavLink, Router } from "react-router-dom";
 import { Suspense, lazy, useEffect } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import { useSelector } from "react-redux";
-import LoginPage from "./pages/LoginPage";
-import Categories from "./pages/categories/Categories";
+import Loading from "./components/Loading/Loading";
+
+const Shop = lazy(() => import("./pages/shop/Shop"));
+const Cart = lazy(() => import("./pages/cart/Cart"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const Profile = lazy(() => import("./pages/profile/Profile"));
+const Orders = lazy(() => import("./pages/orders/Orders"));
+const Categories = lazy(() => import("./pages/categories/Categories"));
 
 function App() {
   const { isLoggedIn, loading, error, user } = useSelector(
@@ -13,8 +19,88 @@ function App() {
   return (
     <div className="app">
       <Navbar />
-      {!isLoggedIn && <LoginPage />}
-      {isLoggedIn && <Categories />}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Suspense fallback={<Loading />}>
+              <Categories />
+            </Suspense>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <Suspense fallback={<Loading />}>
+              <Categories />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/shop"
+          element={
+            <Suspense fallback={<Loading />}>
+              <Shop />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/categories"
+          element={
+            <Suspense fallback={<Loading />}>
+              <Categories />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <Suspense fallback={<Loading />}>
+              <Cart />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <Suspense fallback={<Loading />}>
+              {isLoggedIn ? <Categories /> : <LoginPage />}
+            </Suspense>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <Suspense fallback={<Loading />}>
+              {isLoggedIn ? <Profile /> : <LoginPage />}
+            </Suspense>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <Suspense fallback={<Loading />}>
+              {isLoggedIn ? <Profile /> : <LoginPage />}
+            </Suspense>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <Suspense fallback={<Loading />}>
+              {isLoggedIn ? <Profile /> : <LoginPage />}
+            </Suspense>
+          }
+        />
+        <Route
+          path="/orders"
+          element={
+            <Suspense fallback={<Loading />}>
+              {isLoggedIn ? <Orders /> : <LoginPage />}
+            </Suspense>
+          }
+        />
+      </Routes>
     </div>
   );
 }
