@@ -70,13 +70,14 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
 
   const handleGoogleLogin = async () => {
     console.log("google login");
-    dispatch(loginGoogle());
-    // const res = await apiService.public.post("/auth/google/url");
-    // window.location.href = res.data;
+
+    const res = await apiService.public.post("/auth/google/url");
+    console.log(res.data);
+    window.location.href = res.data;
   };
 
   useEffect(() => {
-    async function getMe() {
+    async function getUser() {
       await axios
         .get("http://localhost:3001/user/", {
           withCredentials: true,
@@ -84,10 +85,9 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
         .then((res) => console.log(res.data));
     }
 
-    getMe();
+    getUser();
   }, []);
 
-  
   useEffect(() => {
     showErrorToast(error);
   }, [error]);

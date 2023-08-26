@@ -4,13 +4,10 @@ import axios from "axios";
 
 export const loginGoogle = createAsyncThunk(
   "/auth/google/url",
-  async (_, thunkAPI) => {
+  async (body, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await apiService.public.post("/auth/google/url");
-
-      console.log(res.data);
-      window.open(res.data, "_blank", "rel=noopener noreferrer");
+      return body;
     } catch (error) {
       console.log(error.response.data.error);
       return rejectWithValue(error.response.data.error);
