@@ -21,7 +21,7 @@ const UserSchema = new mongoose.Schema(
       // required: true,
       unique: true,
     },
-    address: [
+    addresses: [
       {
         street: {
           type: String,
@@ -31,8 +31,10 @@ const UserSchema = new mongoose.Schema(
         },
         zipCode: {
           type: String,
-
           validate: /^\d{5}$/,
+        },
+        isDefault: {
+          type: Boolean,
         },
       },
     ],
