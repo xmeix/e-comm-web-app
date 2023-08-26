@@ -72,7 +72,14 @@ export const changePassword = async (req, res, next) => {
 
 export const getUser = async (req, res, next) => {
   try {
-    res.status(200).json({ user: req.user });
+    const user = await User.findOne({ email: req.user.email });
+
+    const { password: savedPassword, ...userWithoutPassword } = user;
+
+    res.status(200).json({
+      user: userWithoutPassword._doc,
+      message: "Logged In successfully!",
+    });
   } catch (error) {
     next(errorHandler(res, error));
   }

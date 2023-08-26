@@ -19,6 +19,7 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [waitForAnswer, setWaitForAnswer] = useState(false);
 
   const handleChange = (t) => {
     setType(t);
@@ -74,19 +75,23 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
     const res = await apiService.public.post("/auth/google/url");
     console.log(res.data);
     window.location.href = res.data;
+    setWaitForAnswer(true);
   };
 
   useEffect(() => {
-    async function getUser() {
-      await axios
-        .get("http://localhost:3001/user/", {
-          withCredentials: true,
-        })
-        .then((res) => console.log(res.data));
-    }
+    if (waitForAnswer) {
+      async function getUser() {
+        await axios
+          .get("http://localhost:3001/user/", {
+            withCredentials: true,
+          })
+          .then((res) => dispatch(loginGoogle(res.data)));
+      }
 
-    getUser();
-  }, []);
+      getUser();
+      setWaitForAnswer(false);
+    }
+  }, [waitForAnswer]);
 
   useEffect(() => {
     showErrorToast(error);
