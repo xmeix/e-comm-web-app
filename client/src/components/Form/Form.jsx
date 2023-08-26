@@ -4,7 +4,7 @@ import InputGroup from "../InputGroup";
 import "./Form.css";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useDispatch, useSelector } from "react-redux";
-import { login, register } from "./../../store/apiCalls/auth.js";
+import { login, loginGoogle, register } from "./../../store/apiCalls/auth.js";
 import useToast from "../../hooks/useToast";
 import { resetError, setError } from "../../store/slices/authSlice";
 
@@ -65,15 +65,17 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
     dispatch(resetError());
   };
 
+  const handleGoogleLogin = () => {
+    console.log("google login")
+    dispatch(loginGoogle());
+  };
+
   useEffect(() => {
     showErrorToast(error);
   }, [error]);
 
   return (
-    <form
-      autoComplete="off"
-      className="flex-column justify-center login-form form"
-    >
+    <div className="flex-column justify-center login-form form">
       <div className="form-logo">BledBay</div>
       <div className="form-title">
         {type === "login" ? "Login" : "Register"}
@@ -119,13 +121,14 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
           style={{
             backgroundColor: "var(--white)",
           }}
+          onClick={handleGoogleLogin}
         >
           {b === "google" && <GoogleIcon className="btn-icon" />}
           {b}
         </button>
       ))}
       <Toast />
-    </form>
+    </div>
   );
 };
 

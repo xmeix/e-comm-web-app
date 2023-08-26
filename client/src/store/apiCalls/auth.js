@@ -1,9 +1,26 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { apiService } from "./apiService";
+import axios from "axios";
+
+export const loginGoogle = createAsyncThunk(
+  "/auth/google/url",
+  async (_, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const res = await apiService.public.post("/auth/google/url");
+
+      window.location.href = res.data;
+       
+    } catch (error) {
+      console.log(error.response.data.error);
+      return rejectWithValue(error.response.data.error);
+    }
+  }
+);
+
 export const login = createAsyncThunk("auth/login", async (body, thunkAPI) => {
   const { rejectWithValue } = thunkAPI;
   try {
-    console.log("body", body);
     const res = await apiService.public.post("/auth/login/", body);
     return res.data;
   } catch (error) {

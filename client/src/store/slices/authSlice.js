@@ -1,14 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import Cookies from "js-cookie";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { login, logout, register } from "../apiCalls/auth";
+import { login, loginGoogle, logout, register } from "../apiCalls/auth";
 const authSlice = createSlice({
   name: "auth",
   initialState: {
     isLoggedIn: false,
     user: null,
-    // token: null,
     loading: false,
     error: null,
   },
@@ -26,6 +22,24 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // google login
+    builder.addCase(loginGoogle.pending, (state, action) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(loginGoogle.fulfilled, (state, action) => {
+      state.loading = false;
+      state.isLoggedIn = true;
+      state.user = action.payload.user;
+      localStorage.setItem("isLoggedIn", true);
+    });
+    builder.addCase(loginGoogle.rejected, (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
+      state.isLoggedIn = false;
+      state.user = null;
+    });
+    // normal login
     builder.addCase(login.pending, (state, action) => {
       state.loading = true;
       state.error = null;

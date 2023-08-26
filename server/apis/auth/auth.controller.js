@@ -16,6 +16,7 @@ import { getGoogleToken, getGoogleUser } from "../../utils/googleAuthURL.js";
 // @access  Public
 export const loginWithGoogle = async (req, res, next) => {
   const code = req.query.code;
+
   const { id_token, access_token } = await getGoogleToken({ code });
   const googleUser = await getGoogleUser({ id_token, access_token });
 
@@ -48,14 +49,18 @@ export const loginWithGoogle = async (req, res, next) => {
       process.env.ACCESS_TOKEN_SECRET
     );
 
-    // auth
-    res.set("Authorization", `Bearer ${accessToken}`);
-
     const refreshToken = generateJWT(
       user,
       "7d" /*7days*/,
       process.env.REFRESH_TOKEN_SECRET
     );
+
+    res.cookie("access_token", accessToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+      maxAge: 5 * 60 * 1000,
+    });
 
     res.cookie("refresh_token", refreshToken, {
       httpOnly: true,
@@ -63,9 +68,8 @@ export const loginWithGoogle = async (req, res, next) => {
       sameSite: "None",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
-    res
-      .status(200)
-      .json({ token: accessToken, user, message: "Logged In successfully!" });
+
+     res.status(200).json({ user, message: "Logged In successfully!" });
   } catch (err) {
     next(errorHandler(res, err));
   }
@@ -106,7 +110,6 @@ export const login = async (req, res, next) => {
       process.env.ACCESS_TOKEN_SECRET
     );
 
-    // res.set("Authorization", `Bearer ${accessToken}`);
     const refreshToken = generateJWT(
       user,
       "7d" /*7days*/,

@@ -69,3 +69,11 @@ export const changePassword = async (req, res, next) => {
     next(errorHandler(res, error));
   }
 };
+
+export const getUser = async (req, res, next) => {
+  try {
+    res.status(200).json({ user: req.user });
+  } catch (error) {
+    next(errorHandler(res, error));
+  }
+};
