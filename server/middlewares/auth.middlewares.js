@@ -29,8 +29,7 @@ export const verifyCookieToken = async (req, res, next) => {
     async (err, decoded) => {
       if (err) {
         console.log(
-          "Access token expired or doesn't exist, looking for refresh token...",
-          err
+          "Access token expired or doesn't exist, looking for refresh token..."
         );
         jwt.verify(
           cookies?.refresh_token,
@@ -40,7 +39,15 @@ export const verifyCookieToken = async (req, res, next) => {
               console.log(
                 "Refresh token expired or doesn't exist, logging out..."
               );
-              return logout(req, res);
+              res.cookie("refresh_token", null, {
+                expires: new Date(0),
+                httpOnly: true,
+              });
+              res.cookie("access_token", null, {
+                expires: new Date(0),
+                httpOnly: true,
+              });
+              res.redirect("http://127.0.0.1:5173/login");
             } else {
               console.log(dec);
               const foundUser = await User.findOne({
@@ -49,7 +56,15 @@ export const verifyCookieToken = async (req, res, next) => {
 
               if (!foundUser) {
                 console.log("User not found, logging out...");
-                return logout(req, res);
+                res.cookie("refresh_token", null, {
+                  expires: new Date(0),
+                  httpOnly: true,
+                });
+                res.cookie("access_token", null, {
+                  expires: new Date(0),
+                  httpOnly: true,
+                });
+                res.redirect("http://127.0.0.1:5173/login");
               }
 
               const newAccessToken = generateJWT(
