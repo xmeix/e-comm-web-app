@@ -60,11 +60,11 @@ const OrderSchema = new mongoose.Schema(
   }
 );
 
-const Order = mongoose.model("Order", OrderSchema);
-export default Order;
-
 // Define a pre-save hook to calculate totalPrice
 OrderSchema.pre("save", function (next) {
   this.totalPrice = this.price_af_reduction + this.shippingCost;
   next();
 });
+
+const Order = mongoose.model("Order", OrderSchema);
+export default Order;
