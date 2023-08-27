@@ -38,6 +38,28 @@ function App() {
     }
   }, []);
 
+  // ___________REFRESH_IN_ALL_TABS:LOGIN/REGISTER_CASES_________________________________________
+
+  const handleRefresh = () => {
+    window.location.reload();
+  };
+
+  const handleStorageChange = async (event) => {
+    if (event.key === "isLoggedIn") {
+      handleRefresh();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+
+  // ____________________________________________________________________
+
   return (
     <div className="app">
       <Navbar />
@@ -106,22 +128,20 @@ function App() {
             </Suspense>
           }
         />
-        <Route
-          path="/profile"
-          element={
-            <Suspense fallback={<Loading />}>
-              {isLoggedIn ? <Profile /> : <LoginPage />}
-            </Suspense>
-          }
-        />
-        <Route
-          path="/orders"
-          element={
-            <Suspense fallback={<Loading />}>
-              {isLoggedIn ? <Orders /> : <LoginPage />}
-            </Suspense>
-          }
-        />
+        <Suspense fallback={<Loading />}>
+          <Route
+            path="/profile"
+            element={
+              <Suspense fallback={<Loading />}>
+                {isLoggedIn ? <Profile /> : <LoginPage />}
+              </Suspense>
+            }
+          />
+          <Route
+            path="/orders"
+            element={isLoggedIn ? <Orders /> : <LoginPage />}
+          />
+        </Suspense>
       </Routes>
     </div>
   );
