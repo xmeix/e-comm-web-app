@@ -2,12 +2,12 @@ import mongoose from "mongoose";
 
 const ProductSchema = new mongoose.Schema(
   {
-    pictures: [
+    images: [
       {
         type: String,
       },
     ],
-    name: {
+    title: {
       type: String,
       required: true,
     },
@@ -21,7 +21,7 @@ const ProductSchema = new mongoose.Schema(
         ref: "Categorie",
       },
     ],
-    quantity: {
+    stock: {
       type: Number,
       default: 0,
     },
@@ -29,8 +29,14 @@ const ProductSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-
-    totalRating: {
+    priceUnitAfterDiscount: {
+      type: Number,
+      required: true,
+    },
+    discountPercentage: {
+      type: Number,
+    },
+    rating: {
       type: Number,
       min: 0,
       max: 5,
@@ -63,7 +69,6 @@ const ProductSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
- 
 
 const Product = mongoose.model("Product", ProductSchema);
 export default Product;
