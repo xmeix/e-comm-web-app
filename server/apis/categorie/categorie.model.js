@@ -15,12 +15,12 @@ const CategorieSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    products: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product", // Reference to the Product schema
-      },
-    ],
+    // products: [
+    //   {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "Product", // Reference to the Product schema
+    //   },
+    // ],
   },
   {
     timestamps: true,

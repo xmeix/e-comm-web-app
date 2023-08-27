@@ -29,7 +29,8 @@ const ProductSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    rating: {
+
+    totalRating: {
       type: Number,
       min: 0,
       max: 5,
@@ -50,6 +51,11 @@ const ProductSchema = new mongoose.Schema(
           type: Date,
           default: Date.now,
         },
+        rating: {
+          type: Number,
+          min: 0,
+          max: 5,
+        },
       },
     ],
   },
@@ -57,6 +63,7 @@ const ProductSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+ 
 
 const Product = mongoose.model("Product", ProductSchema);
 export default Product;
