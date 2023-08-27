@@ -77,17 +77,17 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
   };
 
   useEffect(() => {
+    async function getUser() {
+      await axios
+        .get("http://localhost:3001/user/", {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res.data);
+          dispatch(loginGoogle(res.data));
+        });
+    }
     if (localStorage.getItem("wait") === "true") {
-      async function getUser() {
-        await axios
-          .get("http://localhost:3001/user/", {
-            withCredentials: true,
-          })
-          .then((res) => {
-            console.log(res.data);
-            dispatch(loginGoogle(res.data));
-          });
-      }
       getUser();
       localStorage.setItem("wait", "false");
     }
