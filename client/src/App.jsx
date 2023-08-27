@@ -59,90 +59,48 @@ function App() {
   }, []);
 
   // ____________________________________________________________________
+  const publicRoutes = [
+    { path: "/", component: Categories },
+    { path: "/shop", component: Shop },
+    { path: "/categories", component: Categories },
+    { path: "/cart", component: Cart },
+  ];
 
+  const conditionalRoutes = [
+    {
+      path: "/login",
+      component: isLoggedIn ? Categories : LoginPage,
+    },
+    {
+      path: "/profile",
+      component: isLoggedIn ? Profile : LoginPage,
+    },
+    {
+      path: "/orders",
+      component: isLoggedIn ? Orders : LoginPage,
+    },
+  ];
+
+  const routes = [
+    ...publicRoutes,
+    ...conditionalRoutes,
+    { path: "*", component: Categories },
+  ];
   return (
     <div className="app">
       <Navbar />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Suspense fallback={<Loading />}>
-              <Categories />
-            </Suspense>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <Suspense fallback={<Loading />}>
-              <Categories />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/shop"
-          element={
-            <Suspense fallback={<Loading />}>
-              <Shop />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/categories"
-          element={
-            <Suspense fallback={<Loading />}>
-              <Categories />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/cart"
-          element={
-            <Suspense fallback={<Loading />}>
-              <Cart />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <Suspense fallback={<Loading />}>
-              {isLoggedIn ? <Categories /> : <LoginPage />}
-            </Suspense>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <Suspense fallback={<Loading />}>
-              {isLoggedIn ? <Profile /> : <LoginPage />}
-            </Suspense>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <Suspense fallback={<Loading />}>
-              {isLoggedIn ? <Profile /> : <LoginPage />}
-            </Suspense>
-          }
-        />
-        <Suspense fallback={<Loading />}>
-          <Route
-            path="/profile"
-            element={
-              <Suspense fallback={<Loading />}>
-                {isLoggedIn ? <Profile /> : <LoginPage />}
-              </Suspense>
-            }
-          />
-          <Route
-            path="/orders"
-            element={isLoggedIn ? <Orders /> : <LoginPage />}
-          />
-        </Suspense>
-      </Routes>
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          {routes.map((route, index) => (
+            <Route
+              key={index}
+              path={route.path}
+              element={<route.component />}
+            />
+          ))}
+        </Routes>
+        ;
+      </Suspense>
     </div>
   );
 }
