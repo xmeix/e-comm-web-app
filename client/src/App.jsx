@@ -2,8 +2,10 @@ import "./App.css";
 import { Route, Routes, NavLink, Router } from "react-router-dom";
 import { Suspense, lazy, useEffect } from "react";
 import Navbar from "./components/Navbar/Navbar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "./components/Loading/Loading";
+import { loginGoogle } from "./store/apiCalls/auth";
+import axios from "axios";
 
 const Shop = lazy(() => import("./pages/shop/Shop"));
 const Cart = lazy(() => import("./pages/cart/Cart"));
@@ -16,6 +18,26 @@ function App() {
   const { isLoggedIn, loading, error, user } = useSelector(
     (state) => state.auth
   );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    async function getUser() {
+      await axios
+        .get("http://localhost:3001/user/", {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res.data);
+          dispatch(loginGoogle(res.data));
+        });
+    }
+    if (localStorage.getItem("wait") === "true") {
+      localStorage.setItem("wait", "false");
+      getUser();
+    }
+  }, []);
+
   return (
     <div className="app">
       <Navbar />

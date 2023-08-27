@@ -70,28 +70,13 @@ const Form = ({ onTypeChanged, elements, buttons, otherButtons }) => {
 
   const handleGoogleLogin = async () => {
     console.log("google login");
-    localStorage.setItem("wait", "true");
+    await localStorage.setItem("wait", "true");
     const res = await apiService.public.post("/auth/google/url");
     console.log(res.data);
     window.location.href = res.data;
   };
 
-  useEffect(() => {
-    async function getUser() {
-      await axios
-        .get("http://localhost:3001/user/", {
-          withCredentials: true,
-        })
-        .then((res) => {
-          console.log(res.data);
-          dispatch(loginGoogle(res.data));
-        });
-    }
-    if (localStorage.getItem("wait") === "true") {
-      getUser();
-      localStorage.setItem("wait", "false");
-    }
-  }, []);
+
 
   useEffect(() => {
     showErrorToast(error);
