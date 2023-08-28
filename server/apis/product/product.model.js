@@ -25,13 +25,12 @@ const ProductSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    priceUnit: {
+    price: {
       type: Number,
       required: true,
     },
     priceUnitAfterDiscount: {
       type: Number,
-      required: true,
     },
     discountPercentage: {
       type: Number,
