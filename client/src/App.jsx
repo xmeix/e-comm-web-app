@@ -99,7 +99,6 @@ function App() {
             />
           ))}
         </Routes>
-        ;
       </Suspense>
     </div>
   );

@@ -1,8 +1,10 @@
+import VideoPlayer from "../../components/videoPlayer/VideoPlayer";
 import "./Categories.css";
+
 const Categories = () => {
   return (
     <div className="categories">
-      {/* BANNER*/}
+      <VideoPlayer />
       {/* CHOSEN CATEGORY */}
       {/* BEST SELLERS PRODUCTS */}
       {/* ALL CATEGORIES : FIRST 4 PRODUCTS + VIEW MORE LINK */}

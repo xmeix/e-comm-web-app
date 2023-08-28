@@ -1,0 +1,43 @@
+.video-player-container {
+  position: relative;
+  overflow: hidden;
+}
+.video {
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 452px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+}
+
+.overlay .title1 {
+  font-size: 30px;
+  font-weight: 600;
+  transition: all 0.5s ease-in-out;
+}
+.overlay .title2 {
+  letter-spacing: 5px;
+  transition: all 0.5s ease-in-out;
+}
+
+@media screen and (max-width: 700px) {
+  .overlay .title1 {
+    font-size: 20px;
+  }
+  .overlay .title2 {
+    font-size: 10px;
+  }
+}
