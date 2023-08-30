@@ -1,0 +1,38 @@
+.prin-footer {
+  background-color: var(--light-gray);
+  padding: 2em;
+}
+.footer {
+  display: flex;
+  justify-content: space-around;
+  gap: 1em;
+  flex-wrap: wrap;
+}
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.footer-section .foot-title {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.footer .footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+.footer .footer-section ul a {
+  color: var(--black);
+  text-decoration: none !important;
+}
+
+.footer .footer-section ul li {
+  font-size: 13px;
+  padding: 0.3em;
+}
+
+.footer2 {
+  padding: 2em;
+  text-align: center;
+  font-size: 13px;
+}

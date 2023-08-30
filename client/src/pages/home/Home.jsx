@@ -3,6 +3,7 @@ import CategoryLine from "../../components/categoryLine/CategoryLine";
 import ProductsLine from "../../components/productsLine/ProductsLine";
 import VideoPlayer from "../../components/videoPlayer/VideoPlayer";
 import "./Home.css";
+import Footer from "../../components/footer/Footer";
 
 const Home = () => {
   const [bestSellers, setBestSellers] = useState([]);
@@ -53,7 +54,8 @@ const Home = () => {
         title={"Best deals"}
         discounts={true}
       />
-      {/* ALL Categories : FIRST 4 PRODUCTS + VIEW MORE LINK */}
+      {/* DISCOVER MORE BANNER: takes to categories page */}
+      <Footer />
     </div>
   );
 };
