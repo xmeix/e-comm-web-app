@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./ProductsLine.css";
+import SeeMore from "../seemore/SeeMore";
 const ProductsLine = () => {
   const [bestSellers, setBestSellers] = useState([]);
 
@@ -22,21 +23,32 @@ const ProductsLine = () => {
 
   return (
     <div className="products-line">
-      {bestSellers.map((bs, i) => (
-        <div className="product-pline" key={i}>
-          <img src={bs.images[0]} alt="" />
-          <div className="product-title">{bs.title}</div>
-          <div className="product-price">{bs.price}0</div>
-          <div className="product-rating">
-            {Array.from({ length: Math.floor(bs.rating) }, (_, index) => (
-              <span key={index} role="img" aria-label="star">
-                ⭐
-              </span>
-            ))}
-            <span>({bs.rating.toFixed(2)})</span>
+      <div className="products-line-header">
+        <div className="product-line-title">BEST SELLERS</div>
+        <SeeMore path={""} />
+      </div>
+      <div className="products-line-body ">
+        {bestSellers.map((bs, i) => (
+          <div className="product-pline" key={i}>
+            <div className="img-container">
+              {" "}
+              <img src={bs.images[0]} alt="" />
+            </div>
+            <div className="product-pline-info">
+              <div className="product-title">{bs.title}</div>
+              <div className="product-price">{bs.price}0</div>
+              <div className="product-rating">
+                {Array.from({ length: Math.floor(bs.rating) }, (_, index) => (
+                  <span key={index} role="img" aria-label="star">
+                    ⭐
+                  </span>
+                ))}
+                <span>({bs.rating.toFixed(2)})</span>
+              </div>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

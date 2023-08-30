@@ -1,5 +1,6 @@
 import { categories } from "../../data/categories";
 import { products } from "../../data/products";
+import SeeMore from "../seemore/SeeMore";
 import "./CategoryLine.css";
 const CategoryLine = ({ _id }) => {
   const chosenCategoryProducts = products
@@ -31,6 +32,7 @@ const CategoryLine = ({ _id }) => {
           </div>
         ))}
       </div>
+      <SeeMore path={""} />
     </div>
   );
 };

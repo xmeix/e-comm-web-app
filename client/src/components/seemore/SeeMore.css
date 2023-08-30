@@ -1,0 +1,14 @@
+.see-more {
+  text-decoration: none;
+  align-self: flex-end;
+  font-weight: 500;
+  padding: 0.5em 1em;
+  margin: 0.5em;
+  color: var(--black);
+  border: solid 1px var(--light-gray);
+  width: max-content;
+}
+
+.see-more:hover {
+  background-color: var(--light-gray);
+}
