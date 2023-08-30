@@ -7,6 +7,7 @@ import Loading from "./components/Loading/Loading";
 import { loginGoogle } from "./store/apiCalls/auth";
 import axios from "axios";
 
+const Home = lazy(() => import("./pages/home/Home"));
 const Shop = lazy(() => import("./pages/shop/Shop"));
 const Cart = lazy(() => import("./pages/cart/Cart"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
@@ -60,7 +61,7 @@ function App() {
 
   // ____________________________________________________________________
   const publicRoutes = [
-    { path: "/", component: Categories },
+    { path: "/", component: Home },
     { path: "/shop", component: Shop },
     { path: "/categories", component: Categories },
     { path: "/cart", component: Cart },
@@ -84,7 +85,7 @@ function App() {
   const routes = [
     ...publicRoutes,
     ...conditionalRoutes,
-    { path: "*", component: Categories },
+    { path: "*", component: Home },
   ];
   return (
     <div className="app">

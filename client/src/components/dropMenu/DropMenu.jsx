@@ -28,13 +28,13 @@ const DropMenu = ({ reference }) => {
           <NavLink to={"/orders"} className="drop-menu-li">
             your orders
           </NavLink>
-        )}
+        )}{" "}
+        <NavLink to={"/"} className="drop-menu-li">
+          home
+        </NavLink>
         <NavLink to={"/categories"} className="drop-menu-li">
           categories
         </NavLink>{" "}
-        <NavLink to={"/shop"} className="drop-menu-li">
-          articles
-        </NavLink>
       </ul>
 
       <div className="hr" />
