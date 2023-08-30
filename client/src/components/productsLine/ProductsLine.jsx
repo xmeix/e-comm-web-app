@@ -1,37 +1,22 @@
 import { useEffect, useState } from "react";
 import "./ProductsLine.css";
 import SeeMore from "../seemore/SeeMore";
-const ProductsLine = () => {
-  const [bestSellers, setBestSellers] = useState([]);
-
-  useEffect(() => {
-    // sort all products by rating and get only the 5 best rating products
-
-    fetch("https://dummyjson.com/products")
-      .then((res) => res.json())
-      .then((data) => {
-        const products = data.products;
-
-        // Sort products by rating in descending order
-        products.sort((a, b) => b.rating - a.rating);
-
-        // Get the top 5 highest-rated products
-        const top5Products = products.slice(0, 5);
-        setBestSellers(top5Products);
-      });
-  }, []);
-
+const ProductsLine = ({ products, title, discounts }) => {
   return (
     <div className="products-line">
       <div className="products-line-header">
-        <div className="product-line-title">BEST SELLERS</div>
+        <div className="product-line-title">{title}</div>
         <SeeMore path={""} />
       </div>
       <div className="products-line-body ">
-        {bestSellers.map((bs, i) => (
+        {products.map((bs, i) => (
           <div className="product-pline" key={i}>
+            {discounts && (
+              <div className="product-pline-discount-percentage">
+                {"-" + bs.discountPercentage + "%"}
+              </div>
+            )}
             <div className="img-container">
-              {" "}
               <img src={bs.images[0]} alt="" />
             </div>
             <div className="product-pline-info">
