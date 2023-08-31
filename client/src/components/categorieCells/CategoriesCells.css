@@ -1,0 +1,16 @@
+.categories-cells {
+  padding: 3em;
+}
+.categories-cells .categories-cells-cats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+  padding-top: 1em;
+}
+
+.categories-cells .categories-cells-title {
+  font-size: 25px;
+  font-weight: 600;
+  padding-left: 1em;
+}

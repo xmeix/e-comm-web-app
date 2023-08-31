@@ -45,8 +45,8 @@ const Footer = () => {
             <div className="foot-title">{section.title}</div>
             <ul>
               {section.items.map((item, itemIndex) => (
-                <NavLink to={item.path}>
-                  <li key={itemIndex}>{item.text}</li>
+                <NavLink to={item.path} key={itemIndex}>
+                  <li>{item.text}</li>
                 </NavLink>
               ))}
             </ul>

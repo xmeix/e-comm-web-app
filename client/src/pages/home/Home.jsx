@@ -4,6 +4,7 @@ import ProductsLine from "../../components/productsLine/ProductsLine";
 import VideoPlayer from "../../components/videoPlayer/VideoPlayer";
 import "./Home.css";
 import Footer from "../../components/footer/Footer";
+import CategoriesCells from "../../components/categorieCells/CategoriesCells";
 
 const Home = () => {
   const [bestSellers, setBestSellers] = useState([]);
@@ -42,19 +43,21 @@ const Home = () => {
       <VideoPlayer />
       {/* CHOSEN CATEGORY */}
       <CategoryLine _id="1" />
-      {/* BEST SELLERS PRODUCTS */}
-      <ProductsLine
-        products={bestSellers}
-        title={"Best sellers"}
-        discounts={false}
-      />
+
       {/* DEALS PRODUCTS (WITH DISCOUNTS)*/}
       <ProductsLine
         products={bestDeals}
         title={"Best deals"}
         discounts={true}
       />
+      {/* BEST SELLERS PRODUCTS */}
+      <ProductsLine
+        products={bestSellers}
+        title={"Best sellers"}
+        discounts={false}
+      />
       {/* DISCOVER MORE BANNER: takes to categories page */}
+      <CategoriesCells />
       <Footer />
     </div>
   );
