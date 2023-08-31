@@ -10,7 +10,8 @@
 }
 
 .categories-cells .categories-cells-title {
-  font-size: 25px;
-  font-weight: 600;
-  padding-left: 1em;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
 }
