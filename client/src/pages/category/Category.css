@@ -1,0 +1,45 @@
+.category .cat-banner {
+  position: relative;
+  overflow: hidden;
+}
+.cat-banner img {
+  height: 452px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.cat-ban-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 452px;
+  width: 100%;
+
+  background-color: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+}
+
+.cat-ban-overlay .title1 {
+  font-size: 30px;
+  font-weight: 600;
+  transition: all 0.5s ease-in-out;
+}
+.cat-ban-overlay .title2 {
+  text-align: center;
+  letter-spacing: 2px;
+  transition: all 0.5s ease-in-out;
+}
+
+@media screen and (max-width: 700px) {
+  .cat-ban-overlay .title1 {
+    font-size: 20px;
+  }
+  .cat-ban-overlay .title2 {
+    font-size: 10px;
+  }
+}

@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import "./ProductsLine.css";
 import SeeMore from "../seemore/SeeMore";
 import LineHeader from "../categoryLineHeader/LineHeader";
+import { NavLink } from "react-router-dom";
 const ProductsLine = ({ products, title, discounts }) => {
   return (
     <div className="products-line">
       <LineHeader path={""} title={title} />
       <div className="products-line-body ">
         {products.map((bs, i) => (
-          <div className="product-pline" key={i}>
+          <NavLink to={`/products/${bs.id}`} className="product-pline" key={i}>
+            {/* id to change to _id */}
             {discounts && (
               <div className="product-pline-discount-percentage">
                 {"-" + bs.discountPercentage + "%"}
@@ -29,7 +31,7 @@ const ProductsLine = ({ products, title, discounts }) => {
                 <span>({bs.rating.toFixed(2)})</span>
               </div>
             </div>
-          </div>
+          </NavLink>
         ))}
       </div>
     </div>

@@ -1,6 +1,16 @@
+import { NavLink, useParams } from "react-router-dom";
+import { categories } from "../../data/categories";
 import "./Shop.css";
+import CategoriesNav from "../../components/categoriesNav/CategoriesNav";
+import Category from "../category/Category";
 const Shop = () => {
-  return <div className="shop">THE SHOP</div>;
+  const { id } = useParams();
+  return (
+    <div className="shop">
+      <CategoriesNav />
+      <Category id={id} />
+    </div>
+  );
 };
 
 export default Shop;

@@ -14,6 +14,7 @@ const LoginPage = lazy(() => import("./pages/LoginPage"));
 const Profile = lazy(() => import("./pages/profile/Profile"));
 const Orders = lazy(() => import("./pages/orders/Orders"));
 const Categories = lazy(() => import("./pages/categories/Categories"));
+const Product = lazy(() => import("./pages/product/Product"));
 
 function App() {
   const { isLoggedIn, loading, error, user } = useSelector(
@@ -65,6 +66,8 @@ function App() {
     { path: "/shop", component: Shop },
     { path: "/categories", component: Categories },
     { path: "/cart", component: Cart },
+    { path: "/categories/:id", component: Shop },
+    { path: "/products/:id", component: Product },
   ];
 
   const conditionalRoutes = [

@@ -34,7 +34,7 @@ import shirts2 from "./../assets/categories/shirts2.jpg";
 export const categories = [
   {
     _id: "1",
-    banners: [smartphone, smartphone2],
+    banners: [smartphone2, smartphone],
     name: "Smartphones",
     description: "Discover the latest smartphones and mobile devices.",
   },
@@ -52,7 +52,7 @@ export const categories = [
   },
   {
     _id: "4",
-    banners: [skincare, skincare3, skincare2],
+    banners: [skincare3, skincare, skincare2],
     name: "Skincare",
     description: "Take care of your skin with our skincare products.",
   },
@@ -70,7 +70,7 @@ export const categories = [
   },
   {
     _id: "7",
-    banners: [furniture, furniture2, furniture3],
+    banners: [furniture2, furniture, furniture3],
     name: "Furniture",
     description: "Find the perfect furniture pieces for your home.",
   },
@@ -100,7 +100,7 @@ export const categories = [
   },
   {
     _id: "12",
-    banners: [menshoes2, menshoes],
+    banners: [menshoes, menshoes2],
     name: "Men's Shoes",
     description: "Complete your look with our collection of men's shoes.",
   },
@@ -124,13 +124,13 @@ export const categories = [
   },
   {
     _id: "17",
-    banners: [sunglasses, sunglasses2, sunglasses3],
+    banners: [sunglasses2, sunglasses, sunglasses3],
     name: "Sunglasses",
     description: "Protect your eyes and enhance your style with sunglasses.",
   },
   {
     _id: "20",
-    banners: [lighting, lighting2, lighting3],
+    banners: [lighting3, lighting, lighting2],
     name: "Lighting",
     description: "Illuminate your space with a wide range of lighting options.",
   },

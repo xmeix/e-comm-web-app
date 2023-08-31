@@ -6,6 +6,7 @@
 }
 
 .products-line-body {
+  padding: 1em;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -15,7 +16,7 @@
 
 .products-line-body .product-pline {
   border: solid 1px var(--light-gray);
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,6 +24,8 @@
   padding-top: 0.5em;
   cursor: pointer;
   position: relative;
+  color: var(--black);
+  text-decoration: none;
 }
 
 .products-line-body .product-pline .img-container {

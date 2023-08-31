@@ -7,6 +7,7 @@ import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { logout } from "../../store/apiCalls/auth";
 import DropMenu from "../dropMenu/DropMenu";
 import { useState, useEffect, useRef } from "react";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const { user, loading, isLoggedIn } = useSelector((state) => state.auth);
@@ -33,7 +34,9 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <div className="nav-logo">BledBay</div>
+      <NavLink to={"/home"} className="nav-logo">
+        BledBay
+      </NavLink>
       <div className="nav-p-items">
         <SearchRoundedIcon className="nav-icon" />
 
