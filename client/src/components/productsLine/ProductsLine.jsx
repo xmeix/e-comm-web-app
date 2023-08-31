@@ -14,7 +14,7 @@ const ProductsLine = ({ products, title, discounts }) => {
             {discounts && (
               <div className="product-pline-discount-percentage">
                 {"-" + bs.discountPercentage + "%"}
-              </div>
+              </div> 
             )}
             <div className="img-container">
               <img src={bs.images[0]} alt="" />
