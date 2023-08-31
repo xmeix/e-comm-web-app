@@ -1,8 +1,12 @@
 .categoryLine {
-  border: solid 1px var(--light-gray);
+  margin: 4em 2em;
+  padding: 1em;
+}
+
+.category-line-body {
   display: flex;
   flex-direction: column;
-  margin: 4em 2em;
+  border: solid 1px var(--light-gray);
 }
 .categoryLine .category-details {
   display: flex;

@@ -7,6 +7,8 @@
   color: var(--black);
   border: solid 1px var(--light-gray);
   width: max-content;
+  font-size: 12px;
+  white-space: nowrap;
 }
 
 .see-more:hover {
