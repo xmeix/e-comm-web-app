@@ -1,0 +1,12 @@
+.products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em 4em;
+  background-color: var(--v-gray);
+}
+
+.products-header .prodnum {
+  font-weight: 500;
+  font-size: 13px;
+}

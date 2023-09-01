@@ -1,5 +1,5 @@
 .product-pline {
-  border: solid 1px var(--light-gray);
+  border: solid 1px var(--v-gray);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -35,10 +35,10 @@
 }
 .product-pline .product-price {
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
   padding: 0.5em;
   text-align: center;
-}
+ }
 .product-pline .product-rating {
   font-size: 15px;
   font-weight: 600;

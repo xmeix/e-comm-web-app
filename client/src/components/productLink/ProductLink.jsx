@@ -5,7 +5,7 @@ const ProductLink = ({ product, discounts }) => {
   return (
     <NavLink to={`/products/${product.id}`} className="product-pline">
       {/* id to change to _id */}
-      {discounts && (
+      {discounts && product.discountPercentage !== 0 && (
         <div className="product-pline-discount-percentage">
           {"-" + product.discountPercentage + "%"}
         </div>
@@ -15,7 +15,23 @@ const ProductLink = ({ product, discounts }) => {
       </div>
       <div className="product-pline-info">
         <div className="product-title">{product.title}</div>
-        <div className="product-price">{product.price}0DA</div>
+        <div className="product-price">
+          {product.discountPercentage && product.discountPercentage !== 0 && (
+            <span style={{ color: "red" }}>
+              {((product.price * product.discountPercentage) / 100).toFixed(2)}
+              DA
+            </span>
+          )}{" "}
+          <span
+            style={{
+              color: "var(--light-gray)",
+              textDecoration: "line-through",
+            }}
+          >
+            {" "}
+            {product.price}0DA
+          </span>
+        </div>
         <div className="product-rating">
           {Array.from({ length: Math.floor(product.rating) }, (_, index) => (
             <span key={index} role="img" aria-label="star">
