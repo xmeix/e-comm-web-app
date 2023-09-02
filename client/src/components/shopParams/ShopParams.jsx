@@ -1,5 +1,5 @@
 import "./ShopParams.css";
-const ShopParams = ({ prodNum, setFilter }) => {
+const ShopParams = ({ prodNum, setFilter, setSearchQuery }) => {
   return (
     <div className="products-header">
       <div className="prodnum">{prodNum + " products"} </div>
@@ -14,7 +14,7 @@ const ShopParams = ({ prodNum, setFilter }) => {
             padding: "0.5em 1em",
           }}
         >
-          sort by:
+          sort by
         </label>
         <select
           className="form-control"
@@ -25,6 +25,19 @@ const ShopParams = ({ prodNum, setFilter }) => {
           <option value="3">Best sellings</option>
           <option value="4">Best deals</option>
         </select>
+      </div>
+      <div className="search">
+        <label
+          htmlFor=""
+          style={{
+            fontWeight: "500",
+            fontSize: "13px",
+            padding: "0.5em 1em",
+          }}
+        >
+          search for
+        </label>
+        <input type="text" onChange={(e) => setSearchQuery(e.target.value)} />
       </div>
     </div>
   );

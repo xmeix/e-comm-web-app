@@ -6,7 +6,11 @@ import ShopParams from "../shopParams/ShopParams";
 
 const CategoryProducts = ({ id }) => {
   const [products, setProducts] = useState([]);
+  const [originalProducts, setOriginalProducts] = useState([]);
+
   const category = categories.filter((cat) => cat._id === id)[0]; //this will be deleted once the backend works
+  const [searchQuery, setSearchQuery] = useState("");
+
   const [filter, setFilter] = useState("1");
   useEffect(() => {
     const fetchData = async () => {
@@ -38,6 +42,7 @@ const CategoryProducts = ({ id }) => {
             break;
         }
         setProducts(parray);
+        setOriginalProducts(parray);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -46,9 +51,24 @@ const CategoryProducts = ({ id }) => {
     fetchData();
   }, [id, filter, category]);
 
+  useEffect(() => {
+    if (searchQuery.trim() !== "") {
+      const filtered = originalProducts.filter((item) =>
+        item.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setProducts(filtered);
+    } else {
+      // Reset to the original list when the search query is empty
+      setProducts(originalProducts);
+    }
+  }, [searchQuery, originalProducts]);
   return (
     <>
-      <ShopParams prodNum={products.length || 0} setFilter={setFilter} />
+      <ShopParams
+        prodNum={products.length || 0}
+        setFilter={setFilter}
+        setSearchQuery={setSearchQuery}
+      />
       <div className="category-products">
         {products.map((prod, i) => (
           <ProductLink key={i} product={prod} discounts={true} />
