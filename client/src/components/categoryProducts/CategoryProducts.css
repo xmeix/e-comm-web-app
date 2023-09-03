@@ -1,4 +1,9 @@
+.catprod-container {
+  display: flex;
+}
 .category-products {
+  overflow: scroll;
+  height: 90vh;
   padding: 4em 4em;
   display: flex;
   flex-wrap: wrap;

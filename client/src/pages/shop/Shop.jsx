@@ -11,8 +11,8 @@ const Shop = () => {
 
   return (
     <div className="shop">
-      <CategoriesNav />
-      <Category id={id} />
+      {/* <CategoriesNav /> */}
+      {/* <Category id={id} /> */}
       <CategoryProducts id={id} />
       <Footer />
     </div>

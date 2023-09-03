@@ -29,25 +29,21 @@ a {
 /* Style the select element */
 select {
   color: var(--black);
-  appearance: none; /* Remove the default arrow icon in some browsers */
+  appearance: none;
   padding: 10px;
   font-size: 14px;
   border: 1px solid var(--light-gray);
   border-radius: 4px;
-  background-color: white;
-  cursor: pointer; /* Show a pointer cursor on hover */
-  width: 100%;
-  max-width: 200px; /* Adjust the width as needed */
-  outline: none; /* Remove the default focus outline */
-}
+  background-color: var(--white);
+  cursor: pointer;
+  outline: none;
+ }
 
-/* Style the select when it's focused */
 select:focus {
-  border-color: var(--light-gray); /* Change the border color on focus */
-  box-shadow: 0 0 5px var(--light-gray); /* Add a subtle box shadow on focus */
+  border-color: var(--light-gray);
+  box-shadow: 0 0 5px var(--light-gray);
 }
 
-/* Style the option elements */
 select option {
   padding: 10px;
   font-size: 14px;
@@ -55,7 +51,6 @@ select option {
   color: var(--black);
 }
 
-/* Style the option elements on hover */
 select option:hover {
   background-color: var(--light-gray) !important;
   color: var(--white);

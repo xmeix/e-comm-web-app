@@ -63,18 +63,18 @@ const CategoryProducts = ({ id }) => {
     }
   }, [searchQuery, originalProducts]);
   return (
-    <>
+    <div className="catprod-container">
       <ShopParams
-        prodNum={products.length || 0}
-        setFilter={setFilter}
         setSearchQuery={setSearchQuery}
+        categories={categories}
+        id={id}
       />
       <div className="category-products">
         {products.map((prod, i) => (
           <ProductLink key={i} product={prod} discounts={true} />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
