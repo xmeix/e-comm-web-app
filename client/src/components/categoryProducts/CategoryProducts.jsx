@@ -10,7 +10,7 @@ const CategoryProducts = ({ id }) => {
 
   const category = categories.filter((cat) => cat._id === id)[0]; //this will be deleted once the backend works
   const [searchQuery, setSearchQuery] = useState("");
-
+ 
   const [filter, setFilter] = useState("1");
   useEffect(() => {
     const fetchData = async () => {
