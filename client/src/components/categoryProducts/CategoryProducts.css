@@ -9,7 +9,7 @@
   flex-wrap: wrap;
   justify-content: space-around;
 
-  gap: 1em;
+  gap: 1.5em;
   transition: all 0.5s ease-in;
 }
 

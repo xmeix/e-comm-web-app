@@ -3,9 +3,9 @@
   width: max-content;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 2em 1em;
+  align-items: flex-start;
   background-color: var(--v-gray);
+  padding: 1.5em;
 }
 
 .products-header .prodnum {
@@ -49,7 +49,7 @@
   font-size: 12px;
   text-transform: capitalize;
   list-style: none;
-  padding: 2em 0;
+  padding: 2em 1.5em;
 }
 
 .products-header .params-list .li-cats {
@@ -64,11 +64,25 @@
 .products-header .params-list .li-cat:hover {
   text-decoration: underline;
 }
+.products-header .params-list .li-sizes {
+  display: flex;
+  gap: 0.5em;
+}
+.products-header .params-list .li-size {
+  border: solid 1px var(--v-gray);
+  text-align: center;
+  width: 20px;
+  padding: 0.3em 0.1em;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+.products-header .params-list .li-size:hover {
+  border: solid 1px var(--gray);
+}
 .products-header .params-list .li-cols {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5em;
-  padding: 1em 3em;
 }
 
 .products-header .params-list .li-col {
@@ -77,9 +91,12 @@
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
+  opacity: 0.8;
 }
-.products-header .params-list .li-col:hover {
-  border: solid 1px var(--light-gray);
+.products-header .params-list .li-col:hover,
+.products-header .params-list .li-col:focus,
+.products-header .params-list .li-col:active {
+  opacity: 1;
 }
 
 .params-list-title {

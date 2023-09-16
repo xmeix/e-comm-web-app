@@ -1,30 +1,53 @@
+import { NavLink } from "react-router-dom";
 import "./ShopParams.css";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 const ParamsList = ({ title, items, selectedId }) => {
   return (
     <div className="params-list">
       <div className="params-list-title">{title}</div>
-      <div className={title === "Colors" ? "li-cols" : "li-cats"}>
+      <div
+        className={
+          title === "Colors"
+            ? "li-cols"
+            : title === "Categories"
+            ? "li-cats"
+            : "li-sizes"
+        }
+      >
         <li
-          className={title === "Colors" ? "li-col" : "li-cat"}
+          className={
+            title === "Colors"
+              ? "li-col"
+              : title === "Categories"
+              ? "li-cat"
+              : "li-size"
+          }
           style={{ textDecoration: !selectedId ? "underline" : "" }}
         >
           All
         </li>
         {items.map((item, index) => (
-          <li
-            key={index}
-            className={title === "Colors" ? "li-col" : "li-cat"}
-            style={{
-              textDecoration:
-                item._id === selectedId && title !== "Colors"
-                  ? "underline"
-                  : "",
-              backgroundColor: title === "Colors" ? item : "",
-            }}
-          >
-            {item?.name}
-          </li>
+          <NavLink to={"/categories/" + item._id} className={"navlink"}>
+            <li
+              key={index}
+              className={
+                title === "Colors"
+                  ? "li-col"
+                  : title === "Categories"
+                  ? "li-cat"
+                  : "li-size"
+              }
+              style={{
+                textDecoration:
+                  item._id === selectedId && title !== "Colors"
+                    ? "underline"
+                    : "",
+                backgroundColor: title === "Colors" ? item : "",
+              }}
+            >
+              {title === "Sizes" ? item : item?.name}
+            </li>
+          </NavLink>
         ))}
       </div>
     </div>
@@ -77,6 +100,11 @@ const ShopParams = ({ setSearchQuery, categories, id }) => {
       </div>
       <ParamsList title="Categories" items={categories} selectedId={id} />
       <ParamsList title="Colors" items={colors} selectedId={id} />
+      <ParamsList
+        title="Sizes"
+        items={["XXl", "Xl", "L", "M", "S", "XS"]}
+        selectedId={id}
+      />
     </div>
   );
 };

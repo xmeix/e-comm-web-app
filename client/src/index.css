@@ -21,6 +21,11 @@ body {
   color: var(--black);
 }
 
+.navlink {
+  color: var(--black);
+  text-decoration: none;
+}
+
 button,
 a {
   cursor: pointer;
@@ -37,7 +42,7 @@ select {
   background-color: var(--white);
   cursor: pointer;
   outline: none;
- }
+}
 
 select:focus {
   border-color: var(--light-gray);
