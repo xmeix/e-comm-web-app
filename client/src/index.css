@@ -35,9 +35,10 @@ a {
 select {
   color: var(--black);
   appearance: none;
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid var(--light-gray);
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 2px solid var(--black);
   border-radius: 4px;
   background-color: var(--white);
   cursor: pointer;
@@ -45,18 +46,25 @@ select {
 }
 
 select:focus {
-  border-color: var(--light-gray);
   box-shadow: 0 0 5px var(--light-gray);
+  border: 1px solid var(--black);
 }
 
 select option {
-  padding: 10px;
-  font-size: 14px;
-  background-color: var(--white);
+  padding: 1em;
+  font-size: 13px;
   color: var(--black);
+  text-transform: lowercase;
+  cursor: pointer !important;
 }
 
 select option:hover {
-  background-color: var(--light-gray) !important;
-  color: var(--white);
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.flex {
+  display: flex;
 }

@@ -1,5 +1,5 @@
 .prin-footer {
-  background-color: var(--light-gray);
+  background-color: rgba(211, 211, 211, 0.527);
   padding: 2em;
 }
 .footer {
@@ -33,6 +33,9 @@
 
 .footer2 {
   padding: 2em;
-  text-align: center;
   font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
 }

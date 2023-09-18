@@ -63,7 +63,7 @@ const Footer = () => {
           Algeria
         </div>
         <div className="copyrights">
-          © 2021 Bledbay All rights reserved | Designed by lamia boualouache
+          © 2021 Bledbay All rights reserved | Designed by xmeix
         </div>
       </div>
     </div>

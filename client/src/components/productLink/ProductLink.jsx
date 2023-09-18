@@ -1,9 +1,9 @@
 import "./ProductLink.css";
 import { NavLink } from "react-router-dom";
-
+import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 const ProductLink = ({ product, discounts }) => {
   return (
-    <NavLink to={`/products/${product.id}`} className="product-pline">
+    <NavLink to={`/products/${product.id}`} className="product-pline navlink">
       {/* id to change to _id */}
       {discounts && product.discountPercentage !== 0 && (
         <div className="product-pline-discount-percentage">
@@ -33,11 +33,13 @@ const ProductLink = ({ product, discounts }) => {
           </span>
         </div>
         <div className="product-rating">
-          {Array.from({ length: Math.floor(product.rating) }, (_, index) => (
-            <span key={index} role="img" aria-label="star">
-              ⭐
-            </span>
-          ))}
+          <div>
+            {" "}
+            {Array.from({ length: Math.floor(product.rating) }, (_, index) => (
+              <StarRateRoundedIcon className="star" key={index} />
+            ))}
+          </div>
+
           <span>({product.rating.toFixed(2)})</span>
         </div>
       </div>

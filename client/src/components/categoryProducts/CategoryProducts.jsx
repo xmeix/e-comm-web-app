@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { categories } from "../../data/categories";
 import ProductLink from "../productLink/ProductLink";
 import ShopParams from "../shopParams/ShopParams";
+import ShopHeader from "../shopHeader/ShopHeader";
 
 const CategoryProducts = ({ id }) => {
   const [products, setProducts] = useState([]);
@@ -10,14 +11,23 @@ const CategoryProducts = ({ id }) => {
 
   const category = categories.filter((cat) => cat._id === id)[0]; //this will be deleted once the backend works
   const [searchQuery, setSearchQuery] = useState("");
- 
+
+  const [openParams, setOpenParams] = useState(false);
+
   const [filter, setFilter] = useState("1");
+  const [gridView, setGridView] = useState(0);
   useEffect(() => {
     const fetchData = async () => {
+      let response;
       try {
-        const response = await fetch(
-          `https://dummyjson.com/products/category/${category.link}`
-        );
+        if (id === "all") {
+          // this might need to change (after setting the backend)
+          response = await fetch(`https://dummyjson.com/products/`);
+        } else {
+          response = await fetch(
+            `https://dummyjson.com/products/category/${category.link}`
+          );
+        }
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -62,18 +72,30 @@ const CategoryProducts = ({ id }) => {
       setProducts(originalProducts);
     }
   }, [searchQuery, originalProducts]);
+
   return (
     <div className="catprod-container">
-      <ShopParams
+      <ShopHeader
+        count={products.length}
         setSearchQuery={setSearchQuery}
-        categories={categories}
-        id={id}
+        setFilter={setFilter}
+        setGridView={setGridView}
+        setOpenParams={setOpenParams}
+        gridView={gridView}
       />
+      {openParams && (
+        <ShopParams
+          categories={categories}
+          id={id}
+          setOpenParams={setOpenParams}
+        />
+      )}
       <div className="category-products">
         {products.map((prod, i) => (
           <ProductLink key={i} product={prod} discounts={true} />
         ))}
       </div>
+      {openParams && <div className="transparent-hide"></div>}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import "./ShopParams.css";
-import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
+import { useEffect, useRef } from "react";
 const ParamsList = ({ title, items, selectedId }) => {
   return (
     <div className="params-list">
@@ -14,22 +14,29 @@ const ParamsList = ({ title, items, selectedId }) => {
             : "li-sizes"
         }
       >
-        <li
-          className={
-            title === "Colors"
-              ? "li-col"
-              : title === "Categories"
-              ? "li-cat"
-              : "li-size"
-          }
-          style={{ textDecoration: !selectedId ? "underline" : "" }}
-        >
-          All
-        </li>
+        <NavLink to={"/categories/all"} className={"navlink"}>
+          <li
+            className={
+              title === "Colors"
+                ? "li-col"
+                : title === "Categories"
+                ? "li-cat"
+                : "li-size"
+            }
+            style={{
+              border: selectedId === "all" ? "solid 1px var(--black)" : "",
+            }}
+          >
+            All
+          </li>
+        </NavLink>
         {items.map((item, index) => (
-          <NavLink to={"/categories/" + item._id} className={"navlink"}>
+          <NavLink
+            key={index}
+            to={"/categories/" + item._id}
+            className={"navlink"}
+          >
             <li
-              key={index}
               className={
                 title === "Colors"
                   ? "li-col"
@@ -38,9 +45,9 @@ const ParamsList = ({ title, items, selectedId }) => {
                   : "li-size"
               }
               style={{
-                textDecoration:
+                border:
                   item._id === selectedId && title !== "Colors"
-                    ? "underline"
+                    ? "solid 1px var(--black)"
                     : "",
                 backgroundColor: title === "Colors" ? item : "",
               }}
@@ -53,7 +60,8 @@ const ParamsList = ({ title, items, selectedId }) => {
     </div>
   );
 };
-const ShopParams = ({ setSearchQuery, categories, id }) => {
+const ShopParams = ({ categories, id, setOpenParams }) => {
+  const params = useRef(null);
   const colors = [
     "#FF0000",
     "#00FF00",
@@ -66,38 +74,20 @@ const ShopParams = ({ setSearchQuery, categories, id }) => {
     "#008080",
     "#808080",
   ];
+  const handleOutsideClick = (event) => {
+    if (params.current && !params.current.contains(event.target)) {
+      setOpenParams(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
   return (
-    <div className="products-header">
-      {/* <div>
-        <label
-          htmlFor=""
-          style={{
-            fontWeight: "500",
-            fontSize: "13px",
-            padding: "0.5em 1em",
-          }}
-        >
-          sort by
-        </label>
-        <select
-          className="form-control"
-          onChange={(e) => setFilter(e.target.value)}
-        >
-          <option value="1">Price from high to low</option>
-          <option value="2">Price from low to high</option>
-          <option value="3">Best sellings</option>
-          <option value="4">Best deals</option>
-        </select>
-      </div> */}
-      <div className="search">
-        <SearchRoundedIcon className="input-icon" />
-        <input
-          className="search-input"
-          placeholder="product name"
-          type="text"
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-      </div>
+    <div className="products-header" ref={params}>
       <ParamsList title="Categories" items={categories} selectedId={id} />
       <ParamsList title="Colors" items={colors} selectedId={id} />
       <ParamsList
