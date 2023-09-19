@@ -64,7 +64,7 @@ function App() {
   const publicRoutes = [
     { path: "/", component: Home },
     { path: "/shop", component: Shop },
-    { path: "/categories", component: Categories },
+    { path: "/categories", component: Shop },
     { path: "/cart", component: Cart },
     { path: "/categories/:id", component: Shop },
     { path: "/products/:id", component: Product },

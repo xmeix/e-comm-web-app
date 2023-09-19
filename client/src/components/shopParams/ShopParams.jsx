@@ -14,7 +14,7 @@ const ParamsList = ({ title, items, selectedId }) => {
             : "li-sizes"
         }
       >
-        <NavLink to={"/categories/all"} className={"navlink"}>
+        <NavLink to={"/categories/"} className={"navlink"}>
           <li
             className={
               title === "Colors"

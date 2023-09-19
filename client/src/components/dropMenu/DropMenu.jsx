@@ -4,6 +4,34 @@ import { logout } from "../../store/apiCalls/auth";
 import { NavLink, useNavigate } from "react-router-dom";
 const DropMenu = ({ reference }) => {
   const { isLoggedIn, user } = useSelector((state) => state.auth);
+  const menuItems = [
+    {
+      title: "Your Profile",
+      path: "/profile",
+      ifloggedIn: true,
+    },
+    {
+      title: "Your Cart",
+      path: "/cart",
+      ifloggedIn: false,
+    },
+    {
+      title: "Your Orders",
+      path: "/orders",
+      ifloggedIn: true,
+    },
+    {
+      title: "Home",
+      path: "/",
+      ifloggedIn: false,
+    },
+    {
+      title: "Shop",
+      path: "/categories",
+      ifloggedIn: false,
+    },
+  ];
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -16,7 +44,22 @@ const DropMenu = ({ reference }) => {
   return (
     <div ref={reference} className="drop-menu">
       <ul className="drop-menu-ul">
-        {isLoggedIn && (
+        {isLoggedIn &&
+          menuItems
+            .filter((e) => e.ifloggedIn === true)
+            .map((e) => (
+              <NavLink className="drop-menu-li" to={e.path}>
+                {e.title}
+              </NavLink>
+            ))}
+        {menuItems
+          .filter((e) => e.ifloggedIn !== true)
+          .map((e) => (
+            <NavLink className="drop-menu-li" to={e.path}>
+              {e.title}
+            </NavLink>
+          ))}
+        {/* {isLoggedIn && (
           <NavLink className="drop-menu-li" to={"/profile"}>
             your profile
           </NavLink>
@@ -34,7 +77,7 @@ const DropMenu = ({ reference }) => {
         </NavLink>
         <NavLink to={"/categories"} className="drop-menu-li">
           categories
-        </NavLink>{" "}
+        </NavLink>{" "} */}
       </ul>
 
       <div className="hr" />

@@ -20,13 +20,13 @@ const CategoryProducts = ({ id }) => {
     const fetchData = async () => {
       let response;
       try {
-        if (id === "all") {
-          // this might need to change (after setting the backend)
-          response = await fetch(`https://dummyjson.com/products/`);
-        } else {
+        if (id) {
           response = await fetch(
             `https://dummyjson.com/products/category/${category.link}`
           );
+        } else {
+          // this might need to change (after setting the backend)
+          response = await fetch(`https://dummyjson.com/products/`);
         }
         if (!response.ok) {
           throw new Error("Network response was not ok");
