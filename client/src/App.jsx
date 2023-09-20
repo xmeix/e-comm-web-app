@@ -13,7 +13,6 @@ const Cart = lazy(() => import("./pages/cart/Cart"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const Profile = lazy(() => import("./pages/profile/Profile"));
 const Orders = lazy(() => import("./pages/orders/Orders"));
-const Categories = lazy(() => import("./pages/categories/Categories"));
 const Product = lazy(() => import("./pages/product/Product"));
 
 function App() {

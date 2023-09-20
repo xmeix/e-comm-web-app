@@ -1,96 +1,182 @@
 .product {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
-
+/* _____________________ */
 .product .product-info {
   display: flex;
-  width: 100%;
-  height: 100vh;
+  border: 1px solid #ccc;
+  /* height: 80vh; */
 }
-
+/* _____________________ */
 .product .product-info .product-aside {
-  flex: 10%;
-
+  min-width: 80px;
+  width: 80px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+  gap: 0.5em;
+  padding: 0.5em;
 
+  border: 1px solid #ccc;
+}
+.product .product-info .product-aside .aside-image {
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #ccc;
+  width: 70px;
+  height: 70px;
+}
+.product .product-info .product-aside .aside-image img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  transition: all 0.5s ease-in;
+}
+.product .product-info .product-aside .aside-image img:hover {
+  scale: 1.2;
+}
+/* _____________________ */
 .product .product-info .product-info-container {
-  flex: 90%;
+  overflow: hidden;
   display: flex;
-  flex-wrap: wrap;
 }
 
 .product .product-info .product-info-container .product-image {
-  border: 1px solid #ccc;
-  text-align: center;
-  flex: 1; 
-}
-
-.product .product-info .product-info-container .product-details {
+  padding: 1em;
   flex: 1;
+  overflow: hidden;
+  height: 80vh;
 }
+.product .product-info .product-info-container .product-image img {
+  object-fit: cover;
+  width: 100%;
+  height: 80vh;
+}
+.product .product-info .product-info-container .product-details-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-.product .product-info .product-info-container .product-details .product-title {
- 
+  padding: 1.5em;
 }
 
 .product
   .product-info
   .product-info-container
+  .product-details-container
+  .product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+.product
+  .product-info
+  .product-info-container
+  .product-details-container
+  .product-details
+  .product-title {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.product
+  .product-info
+  .product-info-container
+  .product-details-container
   .product-details
   .product-description {
- 
-}
-
-.product .product-info .product-info-container .product-details .product-price {
-  
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .product
   .product-info
   .product-info-container
+  .product-details-container
+  .product-details
+  .product-price {
+  display: flex;
+  gap: 1em;
+}
+.product
+  .product-info
+  .product-info-container
+  .product-details-container
+  .product-details
+  .product-price
+  .product-price-bd {
+  text-decoration: line-through;
+  color: var(--v-dark-gray);
+}
+.product
+  .product-info
+  .product-info-container
+  .product-details-container
+  .product-details
+  .product-price
+  .product-price-ad {
+  font-weight: 600;
+}
+
+.product
+  .product-info
+  .product-info-container
+  .product-details-container
   .product-details
   .product-colors {
- 
-}
-
-.product .product-info .product-info-container .product-details .product-sizes {
- 
 }
 
 .product
   .product-info
   .product-info-container
+  .product-details-container
   .product-details
+  .product-sizes {
+}
+
+.product
+  .product-info
+  .product-info-container
+  .product-details-container
   .product-buttons {
- 
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
 }
 
 .product
   .product-info
   .product-info-container
-  .product-details
+  .product-details-container
   .product-buttons
   button {
-  margin: 5px 0;
-  padding: 5px 10px;
-  border: none;
-  background-color: #007bff;
-  color: #fff;
-  cursor: pointer;
+  border: solid 1px var(--gray);
+  border-radius: 3px;
+  padding: 0.8em;
 }
 
 .product .product-comments {
-  flex: 1;
-  padding: 10px;
   border: 1px solid #ccc;
 }
 
 .product .product-comments .product-comment {
-  text-align: center;
-  font-weight: bold;
+}
+
+@media screen and (max-width: 800px) {
+  .product .product-info .product-info-container {
+    flex-direction: column;
+  }
+  .product .product-info .product-info-container .product-image {
+    /* border: solid 1px red; */
+    flex: 2;
+    height: 60vh;
+  }
+
+  .product .product-info .product-info-container .product-image img {
+    height: 60vh;
+  }
 }
