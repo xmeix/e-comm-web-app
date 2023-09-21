@@ -1,0 +1,28 @@
+.product-buttons {
+  display: flex;
+  flex-direction: column; 
+
+  gap: 0.5em;
+}
+
+.product-buttons button span {
+  flex: 1;
+}
+
+.product-buttons button .icon-btn {
+  color: var(--v-dark-gray);
+  flex: 1;
+}
+
+.product-buttons button {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  border: solid 1px var(--light-gray);
+  background-color: var(--v-gray);
+  padding: 0.8em;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--v-dark-gray);
+}
