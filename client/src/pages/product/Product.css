@@ -102,15 +102,19 @@
 
 @media screen and (max-width: 800px) {
   .product .product-info .product-info-container {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
   .product .product-info .product-info-container .product-image {
-    /* border: solid 1px red; */
-    flex: 2;
-    height: 90vh;
+     flex: 2;
+    height: 50vh;
   }
 
   .product .product-info .product-info-container .product-image img {
-    height: 90vh;
+    height: 50vh;
+  }
+
+  .product .product-info {
+    display: flex;
+    height: auto;
   }
 }
