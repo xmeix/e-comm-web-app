@@ -72,7 +72,7 @@ function App() {
   const conditionalRoutes = [
     {
       path: "/login",
-      component: isLoggedIn ? Categories : LoginPage,
+      component: isLoggedIn ? Shop : LoginPage,
     },
     {
       path: "/profile",

@@ -1,6 +1,6 @@
 .product-buttons {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
 
   gap: 0.5em;
 }
@@ -25,4 +25,10 @@
   align-items: center;
   font-weight: 600;
   color: var(--v-dark-gray);
+}
+
+/* Style for a disabled button */
+.product-buttons button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
