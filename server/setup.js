@@ -34,4 +34,7 @@ export const setupRoutes = (app) => {
   app.use("/auth", authRoutes);
   // Set up API routes
   app.use("/user", userRoutes);
+  app.use("/products", userRoutes);
+  app.use("/categories", userRoutes);
+  app.use("/orders", userRoutes);
 };

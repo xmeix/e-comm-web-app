@@ -1,14 +1,15 @@
 .product {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
 }
 /* _____________________ */
 .product .product-info {
-  display: flex; /
+  display: flex;
+  height: 100vh;
 }
 .product .product-info .product-info-container {
   overflow: hidden;
-  display: flex; 
+  display: flex;
   width: 100%;
 }
 
@@ -16,13 +17,13 @@
   padding: 1em;
   flex: 1;
   overflow: hidden;
-  height: 100%; 
+  height: 100%;
   border: solid 1px var(--v-gray);
 }
 .product .product-info .product-info-container .product-image img {
   object-fit: cover;
   width: 100%;
-  height: 100%; 
+  height: 100%;
 }
 .product .product-info .product-info-container .product-details-container {
   flex: 1;
