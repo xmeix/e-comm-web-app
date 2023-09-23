@@ -6,6 +6,9 @@ import cookieParser from "cookie-parser";
 
 import authRoutes from "./apis/auth/auth.route.js";
 import userRoutes from "./apis/user/user.route.js";
+import productRoutes from "./apis/product/product.route.js";
+import categorieRoutes from "./apis/categorie/categorie.route.js";
+import orderRoutes from "./apis/order/order.route.js";
 
 export const setupRoutes = (app) => {
   app.use(express.json());
@@ -34,7 +37,7 @@ export const setupRoutes = (app) => {
   app.use("/auth", authRoutes);
   // Set up API routes
   app.use("/user", userRoutes);
-  app.use("/products", userRoutes);
-  app.use("/categories", userRoutes);
-  app.use("/orders", userRoutes);
+  app.use("/products", productRoutes);
+  app.use("/categories", categorieRoutes);
+  app.use("/orders", orderRoutes);
 };

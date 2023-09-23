@@ -9,7 +9,22 @@ export const getAllCategories = async (req, res, next) => {
 // @route   POST /categories/
 // @access  Private (ADMIN)
 export const addCategorie = async (req, res, next) => {
-  // with at least one picture
+  try {
+    console.log(req.files);
+
+    // const imgPath = `http://localhost:3001/${req.file.path}`;
+
+    // const updatedUser = await User.findByIdAndUpdate(
+    //   req.user.id,
+    //   {
+    //     $set: { profileImage: imgPath, ...req.body },
+    //   },
+    //   { new: true }
+    // );
+    // res.status(200).json(updatedUser);
+  } catch (error) {
+    next(errorHandler(res, error));
+  }
 };
 
 // @desc    update categorie
