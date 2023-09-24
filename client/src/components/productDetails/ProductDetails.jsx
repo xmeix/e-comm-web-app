@@ -13,7 +13,13 @@ const colors = [
   "#808080",
 ];
 const sizes = ["XXl", "Xl", "L", "M", "S", "XS"];
-const ProductDetails = ({ product }) => {
+const ProductDetails = ({
+  product,
+  onColorChoice,
+  onSizeChoice,
+  chosenColor,
+  chosenSize,
+}) => {
   return (
     <div className="product-details">
       <div className="product-title">
@@ -65,7 +71,10 @@ const ProductDetails = ({ product }) => {
           {colors.map((color, i) => (
             <div
               key={i}
-              className="product-color"
+              className={`product-color ${
+                chosenColor && chosenColor === color && "chosen"
+              }`}
+              onClick={() => onColorChoice(color)}
               style={{ backgroundColor: color }}
             ></div>
           ))}
@@ -75,7 +84,13 @@ const ProductDetails = ({ product }) => {
         <div className="product-sizes">
           <span>Sizes:</span>
           {sizes.map((size, i) => (
-            <div key={i} className="product-size">
+            <div
+              key={i}
+              className={`product-size ${
+                chosenSize && chosenSize === size && "chosen"
+              }`}
+              onClick={() => onSizeChoice(size)}
+            >
               {size}
             </div>
           ))}

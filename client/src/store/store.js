@@ -3,6 +3,7 @@ import authReducer from "./slices/authSlice.js";
 import cartReducer from "./slices/cartSlice.js";
 import productReducer from "./slices/productSlice.js";
 import categorieReducer from "./slices/categorieSlice.js";
+import wishlistReducer from "./slices/wishlistSlice.js";
 
 import {
   persistStore,
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   product: productReducer,
   categorie: categorieReducer,
+  wishlist: wishlistReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

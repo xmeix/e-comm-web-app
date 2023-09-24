@@ -6,17 +6,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { addProductToCart } from "../../store/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-const ProductActions = ({ product, quantity }) => {
+import { addProductToWishlist } from "../../store/slices/wishlistSlice";
+const ProductActions = ({ item }) => {
   const { isLoggedIn } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleAddToCart = async () => {
-    if (product && quantity !== 0) {
-      const toastLoading = toast.loading("adding product to cart!");
-      await dispatch(addProductToCart({ product, quantity }));
+  const handleAddTo = async (where) => {
+    console.log("here", item.product);
+
+    if (item.product) {
+      const toastLoading = toast.loading(`adding product to ${where}!`);
+      if (where === "cart") {
+        // verify if product.option.includes size ==> verify size if empty , same for color
+        await dispatch(addProductToCart(item));
+      } else if (item.quantity !== 0) toast.error("Error, Try later!");
+      else if (where === "wishlist") {
+        await dispatch(addProductToWishlist({ product: item.product }));
+      }
       await toast.dismiss(toastLoading);
-      toast.success("Product has been added to cart!");
+      toast.success(`Product has been added to ${where}!`);
     } else toast.error("Error, Try later!");
   };
 
@@ -24,10 +33,10 @@ const ProductActions = ({ product, quantity }) => {
     <div className="product-buttons">
       <button
         className="special-btn"
-        disabled={!isLoggedIn || product?.stock === 0}
+        disabled={!isLoggedIn || item.product?.stock === 0}
       >
         <span>
-          {product?.stock === 0
+          {item.product?.stock === 0
             ? "OUT OF STOCK"
             : !isLoggedIn
             ? " Buy ( you have to login first )"
@@ -35,11 +44,17 @@ const ProductActions = ({ product, quantity }) => {
         </span>
         <SellRoundedIcon className="icon-btn" />
       </button>
-      <button disabled={product?.stock === 0} onClick={() => handleAddToCart()}>
+      <button
+        disabled={item.product?.stock === 0}
+        onClick={() => handleAddTo("cart")}
+      >
         <span> Add to cart</span>
         <ShoppingCartRoundedIcon className="icon-btn" />
       </button>
-      <button disabled={product?.stock === 0}>
+      <button
+        disabled={item.product?.stock === 0}
+        onClick={() => handleAddTo("wishlist")}
+      >
         <span>Add to wishlist</span>
         <FavoriteRoundedIcon className="icon-btn" />
       </button>

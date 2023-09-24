@@ -95,3 +95,7 @@
 .product-details .product-sizes .product-size:hover {
   opacity: 1;
 }
+
+.product-details .chosen {
+  opacity: 1 !important;
+}

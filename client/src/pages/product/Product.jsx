@@ -13,7 +13,10 @@ const Product = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [chosenImage, setChosenImage] = useState(null);
+  const [chosenColor, setChosenColor] = useState(null);
+  const [chosenSize, setChosenSize] = useState(null);
   const [quantity, setQuantity] = useState(1);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -44,7 +47,13 @@ const Product = () => {
             <img src={chosenImage} alt="" />
           </div>
           <div className="product-details-container">
-            <ProductDetails product={product} />
+            <ProductDetails
+              product={product}
+              onColorChoice={setChosenColor}
+              onSizeChoice={setChosenSize}
+              chosenColor={chosenColor}
+              chosenSize={chosenSize}
+            />
             <div className="quantity-container">
               <button
                 onClick={() =>
@@ -62,7 +71,14 @@ const Product = () => {
                 <RemoveRoundedIcon className="icon" />
               </button>
             </div>
-            <ProductActions product={product} quantity={quantity} />
+            <ProductActions
+              item={{
+                product: product,
+                quantity: quantity,
+                chosenColor: chosenColor,
+                chosenSize: chosenSize,
+              }}
+            />
           </div>
         </div>
       </div>
