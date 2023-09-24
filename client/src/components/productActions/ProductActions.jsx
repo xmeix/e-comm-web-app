@@ -20,8 +20,9 @@ const ProductActions = ({ item }) => {
       if (where === "cart") {
         // verify if product.option.includes size ==> verify size if empty , same for color
         await dispatch(addProductToCart(item));
-      } else if (item.quantity !== 0) toast.error("Error, Try later!");
-      else if (where === "wishlist") {
+      } else if (where === "cart" && item.quantity === 0) {
+        toast.error("Error, Try later!");
+      } else if (where === "wishlist") {
         await dispatch(addProductToWishlist({ product: item.product }));
       }
       await toast.dismiss(toastLoading);
