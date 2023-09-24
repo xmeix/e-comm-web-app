@@ -62,8 +62,9 @@ const ProductDetails = ({ product }) => {
       {colors.length !== 0 && (
         <div className="product-colors">
           <span>Colors:</span>
-          {colors.map((color) => (
+          {colors.map((color, i) => (
             <div
+              key={i}
               className="product-color"
               style={{ backgroundColor: color }}
             ></div>
@@ -73,8 +74,10 @@ const ProductDetails = ({ product }) => {
       {sizes.length !== 0 && (
         <div className="product-sizes">
           <span>Sizes:</span>
-          {sizes.map((size) => (
-            <div className="product-size">{size}</div>
+          {sizes.map((size, i) => (
+            <div key={i} className="product-size">
+              {size}
+            </div>
           ))}
         </div>
       )}

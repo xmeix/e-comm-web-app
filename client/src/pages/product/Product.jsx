@@ -7,12 +7,13 @@ import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import ProductImageGallery from "../../components/productImageGallery/ProductImageGallery";
 import ProductDetails from "../../components/productDetails/ProductDetails";
 import ProductActions from "../../components/productActions/ProductActions";
+import { Toaster } from "react-hot-toast";
 
 const Product = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [chosenImage, setChosenImage] = useState(null);
-
+  const [quantity, setQuantity] = useState(1);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -45,21 +46,30 @@ const Product = () => {
           <div className="product-details-container">
             <ProductDetails product={product} />
             <div className="quantity-container">
-              <button>
+              <button
+                onClick={() =>
+                  setQuantity((prev) =>
+                    prev <= product.stock ? prev + 1 : prev
+                  )
+                }
+              >
                 <AddRoundedIcon className="icon" />
               </button>
-              <span>10</span>
-              <button>
+              <span>{quantity}</span>
+              <button
+                onClick={() => setQuantity((prev) => (prev > 1 ? prev - 1 : 1))}
+              >
                 <RemoveRoundedIcon className="icon" />
               </button>
             </div>
-            <ProductActions />
+            <ProductActions product={product} quantity={quantity} />
           </div>
         </div>
       </div>
       <div className="product-comments">
         <div className="product-comment">comment section</div>
-      </div>
+      </div>{" "}
+      <Toaster />
     </div>
   );
 };
