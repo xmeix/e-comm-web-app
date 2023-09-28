@@ -11,6 +11,7 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const { user, loading, isLoggedIn } = useSelector((state) => state.auth);
+  const { cart } = useSelector((state) => state.cart);
   const [openDropMenu, setOpenDropMenu] = useState(false);
   const dispatch = useDispatch();
   const subMenuRef = useRef(null);
@@ -43,10 +44,10 @@ const Navbar = () => {
         <PersonRoundedIcon className="nav-icon" onClick={toggleDropMenu} />
 
         {openDropMenu && <DropMenu reference={subMenuRef} />}
-        <div className="cart-icon-container">
+        <NavLink to={"/cart"} className="cart-icon-container navlink">
           <ShoppingBasketRoundedIcon className="nav-icon" />
-          <span className="cart-item-count">{5}</span>
-        </div>
+          <span className="cart-item-count">{cart.length || 0}</span>
+        </NavLink>
       </div>
     </div>
   );
