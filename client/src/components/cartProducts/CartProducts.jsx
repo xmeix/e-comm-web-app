@@ -7,15 +7,16 @@ const CartProducts = () => {
 
   return (
     <table className="cart-products">
-      <th className="cart-table-header">
-        <td colSpan={2}>Product</td>
-        <td colSpan={2}>Price</td>
-        <td colSpan={2}>Qty</td>
-        <td colSpan={2}>Total</td>
-      </th>
-      <tbody>
-        {cart.map((product) => (
-          <CartProduct product={product} />
+      <thead className="cart-table-header">
+        <th>Product</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th>Total</th>
+        <th></th>
+      </thead>
+      <tbody className="cart-table-body">
+        {cart.map((product, i) => (
+          <CartProduct key={i} product={product} />
         ))}
       </tbody>
     </table>

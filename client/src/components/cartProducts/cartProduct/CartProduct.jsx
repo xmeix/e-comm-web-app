@@ -1,16 +1,36 @@
 import "./CartProduct.css";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteProductFromCart } from "../../../store/slices/cartSlice";
+
 const CartProduct = ({ product }) => {
+  const dispatch = useDispatch();
+
+  const handleDeleteFromCart = () => {
+    dispatch(
+      deleteProductFromCart({
+        productId: product.id,
+        chosenColor: product.chosenColor,
+        chosenSize: product.chosenSize,
+      })
+    );
+  };
+
   return (
     <tr className="cart-product">
-      <td>
-        <img src={product.images[0]} className="product-image"></img>
+      <td className="cart-product-info">
+        <div className="cart-product-image">
+          <img src={product.images[0]} className="product-image"></img>
+        </div>
         <div className="cart-product-details">
           <div className="cart-product-title">{product.title}</div>
           <div className="cart-product-id">#{product.id}</div>
           <div className="cart-product-options">
-            <div className="cart-product-option">{product?.chosenColor}</div>
-            <div className="cart-product-option">{product?.chosenSize}</div>
+            <div
+              className="cart-product-color"
+              style={{ backgroundColor: product.chosenColor }}
+            ></div>
+            <div className="cart-product-size">{product?.chosenSize}</div>
           </div>
         </div>
       </td>
@@ -18,10 +38,13 @@ const CartProduct = ({ product }) => {
         {product?.price.toFixed()}
         DA
       </td>
-      <td className="cart-product-qty">{product?.quantity}</td>
-      <td className="cart-product-total">{product?.total}</td>
-      <td className="cart-product-total">
-        <CloseRoundedIcon />
+      <td className="cart-product-qty">x{product?.quantity}</td>
+      <td className="cart-product-total">{product?.total}DA</td>
+      <td>
+        <CloseRoundedIcon
+          className="cart-icon-btn"
+          onClick={() => handleDeleteFromCart()}
+        />
       </td>
     </tr>
   );

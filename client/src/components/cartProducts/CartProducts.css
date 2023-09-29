@@ -1,0 +1,22 @@
+.cart-products {
+  /* background-color: antiquewhite; */
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-products td,
+.cart-products th {
+  /* border: 1px solid #ddd; */
+  padding: 8px;
+
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+}
+
+.cart-products th {
+  font-weight: 600;
+  color: var(--v-dark-gray);
+  font-size: 15px;
+}
+

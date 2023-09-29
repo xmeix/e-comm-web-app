@@ -37,10 +37,17 @@ const cartSlice = createSlice({
       state.total += quantity * product.price;
     },
     deleteProductFromCart: (state, action) => {
-      const { productId } = action.payload;
+      const { productId, chosenColor, chosenSize } = action.payload;
 
       // Create a new cart array without the item to be deleted
-      state.cart = state.cart.filter((item) => item.id !== productId);
+      state.cart = state.cart.filter(
+        (item) =>
+          !(
+            item.id === productId &&
+            item?.chosenColor === chosenColor &&
+            item?.chosenSize === chosenSize
+          )
+      );
 
       // Recalculate total and quantity for the entire cart
       state.total = state.cart.reduce((total, item) => total + item.total, 0);
