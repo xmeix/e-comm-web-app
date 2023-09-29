@@ -1,5 +1,7 @@
 import CartProducts from "../../components/cartProducts/CartProducts";
 import "./Cart.css";
+import { NavLink } from "react-router-dom";
+
 import { useSelector } from "react-redux";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 const Cart = () => {
@@ -9,10 +11,10 @@ const Cart = () => {
     <div className="cart">
       <div className="cart-header">
         <h1 className="cart-title">My Cart</h1>
-        <button className="continue-shopping">
+        <NavLink to={"/shop"} className="continue-shopping navlink">
           <ArrowBackRoundedIcon />
           Continue shopping
-        </button>
+        </NavLink>
       </div>
       {cart.length === 0 ? (
         <div className="empty-cart">Your cart is empty!</div>
