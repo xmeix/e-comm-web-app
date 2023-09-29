@@ -19,3 +19,15 @@
   font-size: 13px;
   color: var(--v-dark-gray);
 }
+
+.empty-cart {
+  height: 350px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 13px;
+
+  background-color: #f7f4f4;
+}

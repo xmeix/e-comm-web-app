@@ -14,7 +14,11 @@ const Cart = () => {
           Continue shopping
         </button>
       </div>
-      <CartProducts />
+      {cart.length === 0 ? (
+        <div className="empty-cart">Your cart is empty!</div>
+      ) : (
+        <CartProducts />
+      )}
       {/* Shipping and checkout */}
     </div>
   );
