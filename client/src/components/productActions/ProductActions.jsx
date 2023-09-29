@@ -15,10 +15,11 @@ const ProductActions = ({ item }) => {
   const handleAddTo = async (where) => {
     console.log("here", item.product);
 
-    if (item.product) {
+    if (item.product && item.chosenColor && item.chosenSize) {
       const toastLoading = toast.loading(`adding product to ${where}!`);
       if (where === "cart") {
         // verify if product.option.includes size ==> verify size if empty , same for color
+        // for now we need to verify both
         await dispatch(addProductToCart(item));
       } else if (where === "cart" && item.quantity === 0) {
         toast.error("Error, Try later!");
@@ -27,7 +28,13 @@ const ProductActions = ({ item }) => {
       }
       await toast.dismiss(toastLoading);
       toast.success(`Product has been added to ${where}!`);
-    } else toast.error("Error, Try later!");
+    } else if (item.chosenColor === null) {
+      toast.error("You need to choose a color!");
+    } else if (item.chosenSize === null) {
+      toast.error("You need to choose a size!");
+    } else {
+      toast.error("Unknown Error!");
+    }
   };
 
   return (
