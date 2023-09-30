@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
+import CartShoppingCheckout from "./cartShippingCheckout/CartShippingCheckout";
 const Cart = () => {
   const { cart } = useSelector((state) => state.cart);
 
@@ -22,6 +23,7 @@ const Cart = () => {
         <CartProducts />
       )}
       {/* Shipping and checkout */}
+      <CartShoppingCheckout />
     </div>
   );
 };

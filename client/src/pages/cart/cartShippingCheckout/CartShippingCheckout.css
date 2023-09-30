@@ -1,0 +1,62 @@
+.cart-shipping-checkout {
+  background-color: var(--blue);
+  color: var(--white);
+
+  padding: 2em;
+  margin-top: 2em;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.cart-shipping-checkout .cart-shipping h5 {
+  /* color: var(--v-dark-gray); */
+  margin: 0.5em 0;
+}
+.cart-shipping-checkout .cart-shipping {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.cart-shipping-checkout .radio-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.cart-shipping-checkout .radio-container label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.cart-shipping-checkout input[type="radio"] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  appearance: none;
+  /* For iOS < 15 to remove gradient background */
+  background-color: #fff;
+  /* Not removed via appearance */
+  margin: 0;
+
+  font: inherit;
+  width: 1.5em;
+  height: 1.5em;
+  border: 1px solid var(--white);
+  border-radius: 50%;
+  transform: translateY(-0.075em);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.cart-shipping-checkout input[type="radio"]::before {
+  content: "✘";
+  color: var(--blue) !important;
+  font: inherit;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+}
+
+.cart-shipping-checkout input[type="radio"]:checked::before {
+  transform: scale(1);
+}

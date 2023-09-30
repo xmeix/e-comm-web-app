@@ -70,3 +70,9 @@ select option:hover {
 .flex {
   display: flex;
 }
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
