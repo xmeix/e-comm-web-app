@@ -20,7 +20,7 @@ const CartProduct = ({ product }) => {
     <tr className="cart-product">
       <td className="cart-product-info">
         <div className="cart-product-image">
-          <img src={product.images[0]} className="product-image"></img>
+          <img src={product.images[0]}></img>
         </div>
         <div className="cart-product-details">
           <div className="cart-product-title">{product.title}</div>

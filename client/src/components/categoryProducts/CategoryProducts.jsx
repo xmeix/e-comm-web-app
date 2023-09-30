@@ -90,11 +90,15 @@ const CategoryProducts = ({ id }) => {
           setOpenParams={setOpenParams}
         />
       )}
-      <div className="category-products">
-        {products.map((prod, i) => (
-          <ProductLink key={i} product={prod} discounts={true} />
-        ))}
-      </div>
+      {products?.length !== 0 ? (
+        <div className="category-products">
+          {products.map((prod, i) => (
+            <ProductLink key={i} product={prod} discounts={true} />
+          ))}
+        </div>
+      ) : (
+        <div className="empty-cart"> No products found!</div>
+      )}
       {openParams && <div className="transparent-hide"></div>}
     </div>
   );

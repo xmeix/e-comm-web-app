@@ -16,13 +16,14 @@
 
 .cart-product .cart-product-image img {
   width: 150px;
-  height: 150px;
+  height: 100px;
   object-fit: fit;
 }
 
 .cart-product .cart-product-details {
   display: flex;
   flex-direction: column;
+  /* flex-wrap: nowrap; */
   gap: 0.5em;
   padding-top: 1em;
   color: var(--v-dark-gray);
@@ -67,4 +68,11 @@
 
 .cart-product .cart-icon-btn {
   cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .cart-product .cart-product-image img {
+    height: 80px;
+    width: 80px;
+  }
 }
