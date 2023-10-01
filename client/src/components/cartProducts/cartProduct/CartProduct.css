@@ -6,7 +6,7 @@
 .cart-product .cart-product-info {
   display: flex;
   align-items: center;
-
+  flex-wrap: wrap-reverse;
   gap: 1em;
 }
 .cart-product .cart-product-image {
@@ -51,10 +51,12 @@
   border-radius: 50px;
 }
 .cart-product .cart-product-size {
-  height: 15px;
-  width: 15px;
+  height: 20px;
+  width: 20px;
   border: solid 1px var(--light-gray);
   padding: 5px;
+  display: grid;
+  place-content: center;
 }
 
 .cart-product .cart-product-price {

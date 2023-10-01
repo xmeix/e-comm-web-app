@@ -7,6 +7,8 @@
   align-items: center;
 }
 .cart .cart-header .cart-title {
+  color: var(--blue);
+  font-weight: 700;
 }
 .cart .cart-header .continue-shopping {
   background-color: var(--white);
@@ -30,4 +32,16 @@
   font-size: 13px;
 
   background-color: #f7f4f4;
+}
+
+@media screen and (max-width: 600px) {
+  .cart {
+    padding: 1em 2em;
+  }
+  .cart .cart-header .cart-title {
+    font-size: 25px;
+  }
+  .cart .cart-header .continue-shopping {
+    font-size: 11px;
+  }
 }
