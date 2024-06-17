@@ -150,7 +150,7 @@ export const logout = async (req, res, next) => {
   try {
     res.cookie("refresh_token", null, { expires: new Date(0), httpOnly: true });
     res.cookie("access_token", null, { expires: new Date(0), httpOnly: true });
-    res.redirect("http://127.0.0.1:5173/login");
+    res.redirect("http://localhost:5173/login");
     res.status(200).json({ message: "user logged out successfully" });
   } catch (error) {
     next(errorHandler(res, error));
